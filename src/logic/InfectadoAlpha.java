@@ -2,8 +2,8 @@ package logic;
 
 public class InfectadoAlpha extends Infectado {
 
-	public InfectadoAlpha(Mapa m, int vx, int vy, Visitor v, EntidadGrafica g, EstrategiaMov s, EstrategiaDelete d) {
-		super(100,new ArmaInfectados(),m,vx,vy,v,g,s,d);
+	public InfectadoAlpha(Mapa m, int vx, int vy, Visitor v, EntidadGrafica g, EstrategiaMovimiento s, EstrategiaDelete d) {
+		super(new ArmaInfectados(),m,vx,vy,v,g,s,d);
 	}
 
 	@Override

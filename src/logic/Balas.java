@@ -2,7 +2,7 @@ package logic;
 
 public class Balas extends Proyectil {
 
-	public Balas(int da,Mapa m, int vx, int vy, Visitor v, EntidadGrafica g, EstrategiaMov s, EstrategiaDelete d) {
+	public Balas(int da,Mapa m, int vx, int vy, Visitor v, EntidadGrafica g, EstrategiaMovimiento s, EstrategiaDelete d) {
 		super(da,m,vx,vy,v,g,s,d);
 	}
 

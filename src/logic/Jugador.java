@@ -2,7 +2,7 @@ package logic;
 
 public class Jugador extends Humano {
 	
-	public Jugador(Mapa m, int vx, int vy, Visitor v, EntidadGrafica g, EstrategiaMov s, EstrategiaDelete d) {
+	public Jugador(Mapa m, int vx, int vy, Visitor v, EntidadGrafica g, EstrategiaMovimiento s, EstrategiaDelete d) {
 		super(0,new ArmaDefault(),m,vx,vy,v,g,s,d);
 	}
 

@@ -2,7 +2,7 @@ package logic;
 
 public class InfectadoBeta extends Infectado {
 
-	public InfectadoBeta(Mapa m, int vx, int vy, Visitor v, EntidadGrafica g, EstrategiaMov s, EstrategiaDelete d) {
+	public InfectadoBeta(Mapa m, int vx, int vy, Visitor v, EntidadGrafica g, EstrategiaMovimiento s, EstrategiaDelete d) {
 		super(new ArmaInfectados(),m,vx,vy,v,g,s,d);
 	}
 

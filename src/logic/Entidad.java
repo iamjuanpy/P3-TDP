@@ -9,10 +9,10 @@ public abstract class Entidad {
 	protected Visitor visitante;
 	protected EntidadGrafica grafico;
 	protected Mapa map;
-	protected EstrategiaMov movStrat;
+	protected EstrategiaMovimiento movStrat;
 	protected EstrategiaDelete delStrat;
 	
-	public Entidad(Mapa m, int vx, int vy, Visitor v, EntidadGrafica g, EstrategiaMov s, EstrategiaDelete d) {
+	public Entidad(Mapa m, int vx, int vy, Visitor v, EntidadGrafica g, EstrategiaMovimiento s, EstrategiaDelete d) {
 		map = m;
 		velocidadX = vx;
 		velocidadY = vy;
@@ -33,5 +33,8 @@ public abstract class Entidad {
 	public EntidadGrafica getEntGrafica() {
 		return null;
 	}
+	
+	public int getVelocidadX() {return velocidadX;}
+	public int getVelocidadY() {return velocidadY;}
 	
 }

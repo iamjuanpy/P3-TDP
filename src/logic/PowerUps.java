@@ -4,7 +4,7 @@ public class PowerUps extends Entidad{
 
 	public EfectoPowerUp e;
 	
-	public PowerUps(EfectoPowerUp e,Mapa m, int vx, int vy, Visitor v, EntidadGrafica g, EstrategiaMov s, EstrategiaDelete d) {
+	public PowerUps(EfectoPowerUp e,Mapa m, int vx, int vy, Visitor v, EntidadGrafica g, EstrategiaMovimiento s, EstrategiaDelete d) {
 		super(m,vx,vy,v,g,s,d);
 		this.e = e;
 	}
