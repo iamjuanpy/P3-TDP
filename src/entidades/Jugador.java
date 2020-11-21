@@ -2,6 +2,7 @@ package entidades;
 import java.awt.event.KeyEvent;
 
 import armas.ArmaDefault;
+import armas.ArmaRapida;
 import estrategias.EstrategiaMovJugador;
 import visitors.Visitor;
 import visitors.VisitorJugador;
@@ -10,17 +11,18 @@ import logica.Mapa;
 public class Jugador extends Humano {
 	
 	public Jugador(Mapa m, int x, int y, int vx, int vy) {
-		super(0, new ArmaDefault(), m, x, y, vx ,vy);
+		super(0, new ArmaRapida(), m, x, y, vx ,vy); // DEV : Volver a arma default
 		
 		// En vez de hacer inyeccion de dependencias, cada Entidad inicializa
 		// sus propias dependencias
-		grafico = new Grafico("Jugador", x, y);
+		grafico = new Grafico("Jugador"+getArmaSeleccionada(), x, y);
 		m.add(grafico);
 		 
 		// this.delStrat = new EstrategiaDeleteJugador();
 		visitante = new VisitorJugador();
 		this.movStrat = new EstrategiaMovJugador(this);		
 	}
+	
 
 	@Override
 	public void actualizar() {

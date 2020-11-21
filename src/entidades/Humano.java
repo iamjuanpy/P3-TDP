@@ -1,5 +1,6 @@
 package entidades;
 import armas.Arma;
+import armas.ArmaRapida;
 import logica.Mapa;
 
 public abstract class Humano extends Entidad{
@@ -11,6 +12,14 @@ public abstract class Humano extends Entidad{
 		super(m,x,y,vx,vy);
 		arma = a;
 		cargaViral = cV;
+	}
+	
+	public String getArmaSeleccionada() {
+		return arma.getClass().toString().replace("class armas.Arma", "");
+	}
+	
+	public void setArma(Arma a) {
+		arma = a;
 	}
 	
 	public void disparar() {

@@ -9,9 +9,9 @@ public class EstrategiaMovJugador extends EstrategiaMovimiento {
 	
 	protected int velocidad;
 	
-	public EstrategiaMovJugador(Entidad e) {
-		super(e);
-		velocidad = e.getVelocidadX();
+	public EstrategiaMovJugador(Entidad ent) {
+		super(ent);
+		velocidad = ent.getVelocidadX();
 	}
 
 	@Override
@@ -26,29 +26,41 @@ public class EstrategiaMovJugador extends EstrategiaMovimiento {
 	
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
+		String aux = ((Jugador) this.e).getArmaSeleccionada();
+
 		
 		if (key == KeyEvent.VK_C) {
 			((Jugador) this.e).disparar();
+			this.e.getEntidadGrafica().setImagen("Jugador"+aux+"Disp");
 		}
 		
 		if (key == KeyEvent.VK_LEFT) {
 			direccion = -velocidad;
+			this.e.getEntidadGrafica().setImagen("Jugador"+aux+"Izq");
 		}
 		
 		if (key == KeyEvent.VK_RIGHT) {
 			direccion = velocidad;
+			this.e.getEntidadGrafica().setImagen("Jugador"+aux+"Der");
 		}
 	}
 	
 	public void keyReleased(KeyEvent e) {
 		int key = e.getKeyCode();
+		String aux = ((Jugador) this.e).getArmaSeleccionada();
+		
+		if (key == KeyEvent.VK_C) {
+			this.e.getEntidadGrafica().setImagen("Jugador"+aux);
+		}
 		
 		if (key == KeyEvent.VK_LEFT) {
 			direccion = 0;
+			this.e.getEntidadGrafica().setImagen("Jugador"+aux);
 		}
 		
 		if (key == KeyEvent.VK_RIGHT) {
 			direccion = 0;
+			this.e.getEntidadGrafica().setImagen("Jugador"+aux);
 		}
 	}
 }
