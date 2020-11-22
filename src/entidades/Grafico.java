@@ -51,9 +51,9 @@ public class Grafico extends JLabel {
 	
 	// Ver si es necesaria este metodo y un setter correspondiente
 	// Puede ser que sea util para un visitor o un powerup que cambie la apariencia de una Entidad
-	/*public ImageIcon getImagen() {
+	public ImageIcon getImagen() {
 		return imagen;
-	}*/
+	}
 	
 	public void setImagen(String tipo) {
 		imagen = mapeoSprites.get(tipo);

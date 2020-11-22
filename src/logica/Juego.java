@@ -39,9 +39,9 @@ public class Juego extends JFrame {
 		// PASSPORT es solo un placeholder por ahora.
 		// Creo que viene de Windows 95
 		
-		 File midi = new File("midi/PASSPORT.mid");
-		 Thread t = new Thread(new MusicaRunnable(midi, true));
-		 t.run();
+		// File midi = new File("midi/PASSPORT.mid");
+		// Thread t = new Thread(new MusicaRunnable(midi, true));
+		// t.run();
 		
 		mapa = new Mapa(60 /* FPS */, this.getWidth(), this.getHeight());
 		mapa.setBounds(0, 0, this.getWidth(), this.getHeight());

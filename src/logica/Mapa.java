@@ -9,7 +9,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import entidades.Bala;
 import entidades.Entidad;
+import entidades.Humano;
 import entidades.Jugador;
 
 import java.util.ArrayList;
@@ -35,11 +37,11 @@ public class Mapa extends JPanel {
 		add(background);
 		
 		player = new Jugador(this, limiteX/2, limiteY - 75, 6, 0);
-		entidades.add(player);
+		// entidades.add(player); // Delegué el agregado al mapa al constructor de la entidad
 		
 		// Se manipula el orden z para posicionar la imagen de fondo al fondo
 		// Un valor mas alto se dibuja despues de uno mas bajo
-		setComponentZOrder(player.getEntidadGrafica(), 0);		
+		//setComponentZOrder(player.getEntidadGrafica(), 0);		
 		setComponentZOrder(background, 1);
 		
 		ActionListener eventoTimer = new ActionListener() {
@@ -90,6 +92,15 @@ public class Mapa extends JPanel {
 		public void keyReleased(KeyEvent e) {
 			player.keyReleased(e);
 		}
+	}
+	
+	public void agregarEntidad(Entidad e) {
+		entidades.add(e);
+		System.out.println("Cantidad de entidades: "+entidades.size());
+	}
+
+	public Humano getPlayer() {
+		return player;
 	}
 	
 }

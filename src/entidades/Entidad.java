@@ -25,6 +25,9 @@ public abstract class Entidad {
 		
 		velocidadX = vx;
 		velocidadY = vy;
+		
+		map.agregarEntidad(this);
+		
 	}
 	
 	public void buscarColisiones(List<Entidad> l) {

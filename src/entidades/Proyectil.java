@@ -1,5 +1,6 @@
 package entidades;
 
+import estrategias.EstrategiaMovProyectiles;
 import logica.Mapa;
 
 public abstract class Proyectil extends Entidad {
@@ -8,8 +9,14 @@ public abstract class Proyectil extends Entidad {
 	
 	public Proyectil(int da,Mapa m, int x, int y, int vx, int vy) {
 		super(m, x, y, vx, vy);
-		grafico = new Grafico("Bala", x, y);
 		daño = da;
+		movStrat = new EstrategiaMovProyectiles(this);
 	}
+	
+	public void actualizar() {
+		movStrat.mover();
+	}
+	
+	public abstract String toString();
 	
 }
