@@ -3,7 +3,6 @@ package armas;
 import entidades.Bala;
 import entidades.Humano;
 import entidades.ParticulaInfeccion;
-import entidades.Proyectil;
 import logica.Mapa;
 
 public abstract class Arma {
@@ -13,6 +12,7 @@ public abstract class Arma {
 	protected Mapa mapa;
 	protected Humano owner;
 	protected int timer;
+	protected String nombre;
 	
 	public Arma(Mapa m,int d, int c) {
 		daño = d;
@@ -25,36 +25,44 @@ public abstract class Arma {
 		owner = h;
 	}
 	
-	public void disparar() {
-		Proyectil p;
-		// Implementar cadencia
-		
+	/**
+	 * El dueño del arma le envia un tick() cada actualización para hacer
+	 * que el timer sea independiente de las veces que el usuario presiona la tecla de disparo
+	 * No se si es util para las armas de los infectados, asi que hay que ver cuando alguien las implemente
+	 */
+	public void tick() {
+		// System.out.println("timer: " + timer); // DEBUG
 		// Por alguna razón el segundo y lo siguientes disparos salen mucho despues que el primero
-		
 		// Esto funciona solo si está manteniendo el boton de disparar
 		// Porque si el jugador decide caminar dsps de disparar un poco
 		// Cuando retome a disparar este contador no va a estar a 0 y no va a disparar hasta que lo esté
-		/**
+		
+		if (timer != 0) {
+			timer++;
+		}	
+		
+		if (timer > cadencia) {
+			timer = 0;
+		}
+	}
+	
+	public void disparar() {
+		int x = owner.getEntidadGrafica().getX();
+		int y = owner.getEntidadGrafica().getY();
+		
 		if (timer == 0) {
-			if (getClass().toString() == "armas.ArmaInfectados")
-				p = new ParticulaInfeccion(0, mapa, owner.getEntidadGrafica().getX(), owner.getEntidadGrafica().getX(), 0, 10);
-			else {
-				p = new Bala(0, mapa, owner.getEntidadGrafica().getX(), owner.getEntidadGrafica().getY(), 0, 10);
-				}
+			if (getNombre() == "ArmaInfectados") {
+				new ParticulaInfeccion(0, mapa, x, y, 0, 10);
+			} else {
+				new Bala(0, mapa, x, y, 0, 10);
+			}
+			
 			timer++;
 		}
-		else {
-			if (timer == cadencia)
-				timer=0;
-			else timer++;
-		}
-		**/
-		
-		if (getClass().toString() == "armas.ArmaInfectados")
-			p = new ParticulaInfeccion(0, mapa, owner.getEntidadGrafica().getX(), owner.getEntidadGrafica().getX(), 0, 10);
-		else {
-			p = new Bala(0, mapa, owner.getEntidadGrafica().getX(), owner.getEntidadGrafica().getY(), 0, 10);
-			}
+	}
+	
+	public String getNombre() {
+		return nombre;
 	}
 
 }

@@ -13,8 +13,6 @@ public class Jugador extends Humano {
 	public Jugador(Mapa m, int x, int y, int vx, int vy) {
 		super(0, new ArmaRapida(m), m, x, y, vx ,vy); // DEV : Volver a arma default
 		
-		// En vez de hacer inyeccion de dependencias, cada Entidad inicializa
-		// sus propias dependencias
 		grafico = new Grafico("Jugador"+getArmaSeleccionada(), x, y);
 		m.add(grafico);
 		m.setComponentZOrder(grafico, 0);
@@ -27,12 +25,13 @@ public class Jugador extends Humano {
 
 	@Override
 	public void actualizar() {
-		movStrat.mover();		
+		movStrat.mover();
+		arma.tick();
 	}
 
 	@Override
 	public void eliminar() {
-		// TODO Auto-generated method stub
+		delStrat.delete();
 		
 	}
 
@@ -44,6 +43,7 @@ public class Jugador extends Humano {
 	
 	public void keyPressed(KeyEvent e) {
 		((EstrategiaMovJugador)movStrat).keyPressed(e);
+		// System.out.println("Key pressed"); // DEBUG cadencia
 	}
 	
 	public void keyReleased(KeyEvent e) {

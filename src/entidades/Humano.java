@@ -1,9 +1,9 @@
 package entidades;
+
 import armas.Arma;
-import armas.ArmaRapida;
 import logica.Mapa;
 
-public abstract class Humano extends Entidad{
+public abstract class Humano extends Entidad {
 
 	protected int cargaViral;
 	protected Arma arma;
@@ -17,7 +17,7 @@ public abstract class Humano extends Entidad{
 	}
 	
 	public String getArmaSeleccionada() {
-		return arma.getClass().toString().replace("class armas.Arma", "");
+		return arma.getNombre();
 	}
 	
 	public void setArma(Arma a) {

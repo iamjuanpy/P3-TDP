@@ -5,7 +5,7 @@ import visitors.VisitorParticulaI;
 
 public class ParticulaInfeccion extends Proyectil {
 
-	public ParticulaInfeccion(int da,Mapa m, int x, int y,  int vx, int vy/*, Visitor v, EntidadGrafica g, EstrategiaMovimiento s, EstrategiaDelete d*/) {
+	public ParticulaInfeccion(int da,Mapa m, int x, int y,  int vx, int vy) {
 		super(da,m,x,y,vx,vy);
 		
 		grafico = new Grafico("Bala",x,y);

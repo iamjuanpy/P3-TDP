@@ -1,4 +1,5 @@
 package logica;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -9,7 +10,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import entidades.Bala;
 import entidades.Entidad;
 import entidades.Humano;
 import entidades.Jugador;
@@ -41,7 +41,6 @@ public class Mapa extends JPanel {
 		
 		// Se manipula el orden z para posicionar la imagen de fondo al fondo
 		// Un valor mas alto se dibuja despues de uno mas bajo
-		//setComponentZOrder(player.getEntidadGrafica(), 0);		
 		setComponentZOrder(background, 1);
 		
 		ActionListener eventoTimer = new ActionListener() {
@@ -96,7 +95,7 @@ public class Mapa extends JPanel {
 	
 	public void agregarEntidad(Entidad e) {
 		entidades.add(e);
-		System.out.println("Cantidad de entidades: "+entidades.size());
+		System.out.println("Cantidad de entidades: "+entidades.size()); // DEBUG
 	}
 
 	public Humano getPlayer() {

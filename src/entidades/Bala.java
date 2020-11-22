@@ -5,7 +5,7 @@ import visitors.VisitorBala;
 
 public class Bala extends Proyectil {
 
-	public Bala(int da,Mapa m, int x, int y, int vx, int vy/*, Visitor v, EntidadGrafica g, EstrategiaMovimiento s, EstrategiaDelete d*/) {
+	public Bala(int da,Mapa m, int x, int y, int vx, int vy) {
 		super(da,m,x,y,vx,vy);
 		
 		grafico = new Grafico ("Bala",x,y);

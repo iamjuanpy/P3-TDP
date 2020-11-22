@@ -49,8 +49,6 @@ public class Grafico extends JLabel {
 		setBounds(this.x, this.y, imagen.getIconWidth(), imagen.getIconHeight());
 	}
 	
-	// Ver si es necesaria este metodo y un setter correspondiente
-	// Puede ser que sea util para un visitor o un powerup que cambie la apariencia de una Entidad
 	public ImageIcon getImagen() {
 		return imagen;
 	}

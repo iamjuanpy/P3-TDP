@@ -20,14 +20,15 @@ public abstract class Entidad {
 		// parametros para inicializar una Entidad:
 		// posicion inicial, imagen, velocidad en los dos ejes
 		
-		// cada clase que especializa Entidad inicializa su visitor y estrategias correctas?
+		// En vez de hacer inyeccion de dependencias, cada Entidad inicializa
+		// sus propias dependencias
+		
 		map = m;
 		
 		velocidadX = vx;
 		velocidadY = vy;
 		
 		map.agregarEntidad(this);
-		
 	}
 	
 	public void buscarColisiones(List<Entidad> l) {
