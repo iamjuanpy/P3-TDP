@@ -7,7 +7,12 @@ import visitors.Visitor;
 public class InfectadoAlpha extends Infectado {
 
 	public InfectadoAlpha(Mapa m, int x, int y, int vx, int vy) {
-		super(new ArmaInfectados(m),m,x,y,vx,vy);
+		super(new ArmaInfectados(m),m,x,y,0,10);
+		grafico = new Grafico("InfectadoAlfa",x,y);
+		
+		m.add(grafico);
+		m.setComponentZOrder(grafico, 1);
+		
 		visitante = new VisitorInfectadoAlpha();
 	}
 

@@ -6,9 +6,9 @@ import visitors.VisitorParticulaI;
 public class ParticulaInfeccion extends Proyectil {
 
 	public ParticulaInfeccion(int da,Mapa m, int x, int y,  int vx, int vy) {
-		super(da,m,x,y,vx,vy);
+		super(da,m,x,y,vx,-vy);
 		
-		grafico = new Grafico("Bala",x,y);
+		grafico = new Grafico("Infeccion",x,y);
 		m.add(grafico);
 		m.setComponentZOrder(grafico,0);
 		

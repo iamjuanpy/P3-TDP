@@ -13,6 +13,8 @@ public abstract class Arma {
 	protected Humano owner;
 	protected int timer;
 	protected String nombre;
+	protected int offsetArmaX;
+	protected int offsetArmaY;
 	
 	public Arma(Mapa m,int d, int c) {
 		daño = d;
@@ -51,13 +53,15 @@ public abstract class Arma {
 		int y = owner.getEntidadGrafica().getY();
 		
 		if (timer == 0) {
+			
 			if (getNombre() == "ArmaInfectados") {
-				new ParticulaInfeccion(0, mapa, x, y, 0, 10);
+				new ParticulaInfeccion(0, mapa, x+(owner.getEntidadGrafica().getAnchoImg()/2), y, 0, 10);
 			} else {
-				new Bala(0, mapa, x, y, 0, 10);
+				new Bala(0, mapa, x+offsetArmaX, y, 0, 10);
 			}
 			
 			timer++;
+			
 		}
 	}
 	

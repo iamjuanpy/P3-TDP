@@ -16,12 +16,15 @@ public class EstrategiaMovJugador extends EstrategiaMovimiento {
 
 	@Override
 	public void mover() {
+		
+		//	if (x == limiteX2 - e.getEntidadGrafica().getAnchoImg() || x == limiteX + e.getEntidadGrafica().getAnchoImg() )
+		//		direccion = 0;
+		
 		int x = e.getEntidadGrafica().getX();
 		x += direccion;
 		e.getEntidadGrafica().setX(x);
 
 		//Faltaria ver los de los bordes creo
-		
 	}
 	
 	public void keyPressed(KeyEvent e) {

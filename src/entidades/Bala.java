@@ -1,4 +1,5 @@
 package entidades;
+import estrategias.EstrategiaDeleteGenerica;
 import logica.Mapa;
 import visitors.Visitor;
 import visitors.VisitorBala;
@@ -13,11 +14,12 @@ public class Bala extends Proyectil {
 		m.setComponentZOrder(grafico,0);
 		
 		visitante = new VisitorBala();
+		delStrat = new EstrategiaDeleteGenerica(m,this);
 	}
 
 	@Override
 	public void eliminar() {
-		// TODO Auto-generated method stub
+		delStrat.delete();
 		
 	}
 
