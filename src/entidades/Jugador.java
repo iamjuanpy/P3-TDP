@@ -2,8 +2,6 @@ package entidades;
 import java.awt.event.KeyEvent;
 
 import armas.ArmaDefault;
-import armas.ArmaRapida;
-import armas.ArmaSuper;
 import estrategias.EstrategiaMovJugador;
 import visitors.Visitor;
 import visitors.VisitorJugador;

@@ -16,21 +16,19 @@ public class EstrategiaMovJugador extends EstrategiaMovimiento {
 
 	@Override
 	public void mover() {
-		
-		//	if (x == limiteX2 - e.getEntidadGrafica().getAnchoImg() || x == limiteX + e.getEntidadGrafica().getAnchoImg() )
-		//		direccion = 0;
-		
 		int x = e.getEntidadGrafica().getX();
 		x += direccion;
+		
+		// if (x == limiteX2 - e.getEntidadGrafica().getAnchoImg() || x == limiteX + e.getEntidadGrafica().getAnchoImg() ) {
+		//		direccion = 0;
+		// }
+		
 		e.getEntidadGrafica().setX(x);
-
-		//Faltaria ver los de los bordes creo
 	}
 	
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
 		String aux = ((Jugador) this.e).getArmaSeleccionada();
-
 		
 		if (key == KeyEvent.VK_C) {
 			((Jugador) this.e).disparar();

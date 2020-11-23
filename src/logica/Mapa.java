@@ -12,7 +12,6 @@ import javax.swing.Timer;
 
 import entidades.Entidad;
 import entidades.Humano;
-import entidades.Infectado;
 import entidades.InfectadoAlpha;
 import entidades.InfectadoBeta;
 import entidades.Jugador;
@@ -41,12 +40,8 @@ public class Mapa extends JPanel {
 		
 		player = new Jugador(this, limiteX/2, limiteY - 75, 6, 0);
 		
-		Infectado a = new InfectadoAlpha(this,limiteX/2 + 70, 0 + 75,0,10); // TEST Infectado
-		Infectado b =new InfectadoBeta(this,limiteX/2 - 70, 0 + 75,0,10); // TEST Infectado
-		
-		// Se manipula el orden z para posicionar la imagen de fondo al fondo
-		// Un valor mas alto se dibuja despues de uno mas bajo
-		setComponentZOrder(background, 2);
+		new InfectadoAlpha(this,limiteX/2 + 70, 0 + 175,0,2); // TEST Infectado
+		new InfectadoBeta(this,limiteX/2 - 70, 0 + 75,0,2); // TEST Infectado
 		
 		ActionListener eventoTimer = new ActionListener() {
 			@Override

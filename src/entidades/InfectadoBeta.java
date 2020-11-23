@@ -1,5 +1,6 @@
 package entidades;
 import armas.ArmaInfectados;
+import estrategias.EstrategiaMovInfectados;
 import logica.Mapa;
 import visitors.Visitor;
 import visitors.VisitorInfectadoBeta;
@@ -12,9 +13,10 @@ public class InfectadoBeta extends Infectado {
 		grafico = new Grafico("InfectadoBeta",x,y);
 		
 		m.add(grafico);
-		m.setComponentZOrder(grafico, 1);
+		m.setComponentZOrder(grafico, 0);
 		
 		visitante = new VisitorInfectadoBeta();
+		movStrat = new EstrategiaMovInfectados(this);
 	}
 
 	@Override
@@ -25,8 +27,7 @@ public class InfectadoBeta extends Infectado {
 
 	@Override
 	public void actualizar() {
-		// TODO Auto-generated method stub
-		
+		movStrat.mover();		
 	}
 
 	@Override

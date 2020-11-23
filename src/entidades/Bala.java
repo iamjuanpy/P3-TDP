@@ -20,7 +20,6 @@ public class Bala extends Proyectil {
 	@Override
 	public void eliminar() {
 		delStrat.delete();
-		
 	}
 
 	@Override

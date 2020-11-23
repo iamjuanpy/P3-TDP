@@ -3,14 +3,14 @@ import java.util.HashMap;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-// cada Grafico conoce un unico mapeo de Strings a imagenes preinicializadas
-// Cuando inicializas el grafico, solo le indicas que tipo de Entidad queres que sea
-// y a partir de esa indicacion decide que imagen usar
-
 public class Grafico extends JLabel {
 	private static final long serialVersionUID = 1L;
 	
+	// cada Grafico conoce un unico mapeo de Strings a imagenes preinicializadas
+	// Cuando se inicializa el grafico, solo se le indica que tipo de Entidad
+	// tiene que representar y a partir de esa indicacion decide que imagen usar
 	private static HashMap<String, ImageIcon> mapeoSprites;
+	
 	private ImageIcon imagen;
 	private int x, y;	
 	
