@@ -1,4 +1,5 @@
 package entidades;
+import estrategias.EstrategiaDeleteGenerica;
 import logica.Mapa;
 import visitors.Visitor;
 import visitors.VisitorParticulaI;
@@ -13,13 +14,13 @@ public class ParticulaInfeccion extends Proyectil {
 		m.setComponentZOrder(grafico,0);
 		
 		visitante = new VisitorParticulaI();
+		delStrat = new EstrategiaDeleteGenerica(m,this);
 	}
 
 
 	@Override
 	public void eliminar() {
-		// TODO Auto-generated method stub
-		
+		delStrat.delete();
 	}
 
 	@Override

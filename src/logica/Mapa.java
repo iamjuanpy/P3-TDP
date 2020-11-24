@@ -51,6 +51,8 @@ public class Mapa extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				actualizarEntidades();
 				resolverColisiones();
+				eliminarEntidadesMuertas();
+				System.out.println("Cantidad de entidades: "+entidades.size()); // DEBUG
 			}
 		};
 		
@@ -79,10 +81,12 @@ public class Mapa extends JPanel {
 		}
 		
 		entidadesAñadir = new ArrayList<Entidad>();
+		//
 		
 		for (Entidad e : entidades) {
 			e.actualizar();
 		}
+
 	}
 	
 	private void resolverColisiones() {
@@ -90,6 +94,17 @@ public class Mapa extends JPanel {
 			e.buscarColisiones(entidades);
 		}
 	}
+	
+	private void eliminarEntidadesMuertas() {
+
+		for(int i=0; i<entidades.size(); i++) {
+			if (entidades.get(i).getEliminado()){
+				entidades.remove(i);
+			}
+		}
+	        
+	}
+	
 	
 	// Delegar el input del usuario al jugador
 	// El jugador se lo pasa a su estrategia de movimiento
@@ -107,13 +122,8 @@ public class Mapa extends JPanel {
 	
 	public void agregarEntidad(Entidad e) {
 		entidadesAñadir.add(e); // entidades.add(e);
-		System.out.println("Cantidad de entidades: "+entidades.size()); // DEBUG
 	}
 
-	public void eliminarEntidad(Entidad e) {
-		entidades.remove(e);
-		System.out.println("Cantidad de entidades: "+entidades.size()); // DEBUG
-	}
 	
 	public Humano getPlayer() {
 		return player;

@@ -16,7 +16,7 @@ public class EstrategiaDeleteGenerica extends EstrategiaDelete{
 		
 	// m.eliminarEntidad(e);
 	public void delete() {
-		m.eliminarEntidad(e);
+		e.setEliminado(true);
 		m.remove(e.getEntidadGrafica());
 	}
 

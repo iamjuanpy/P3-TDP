@@ -11,6 +11,7 @@ public abstract class Entidad {
 	protected Grafico grafico;
 	protected int velocidadX, velocidadY;
 	
+	protected boolean eliminado;
 	protected Visitor visitante;
 	protected Mapa map;
 	protected EstrategiaMovimiento movStrat;
@@ -22,6 +23,7 @@ public abstract class Entidad {
 		
 		// En vez de hacer inyeccion de dependencias, cada Entidad inicializa
 		// sus propias dependencias
+		eliminado = false;
 		
 		map = m;
 		
@@ -54,6 +56,14 @@ public abstract class Entidad {
 		return grafico;
 	}
 	
+	public Mapa getMapa() {
+		return map;
+	}
+	
+	public Visitor getVisitor() {
+		return visitante;
+	}
+	
 	public int getVelocidadX() {
 		return velocidadX;
 	}
@@ -69,13 +79,13 @@ public abstract class Entidad {
 	public void setVelocidadY(int velocidadY) {
 		this.velocidadY = velocidadY;
 	}
-	
-	public Visitor getVisitor() {
-		return visitante;
+
+	public boolean getEliminado() {
+		return eliminado;
 	}
 	
-	public Mapa getMapa() {
-		return map;
+	public void setEliminado(boolean eliminado) {
+		this.eliminado = eliminado;
 	}
 	
 }
