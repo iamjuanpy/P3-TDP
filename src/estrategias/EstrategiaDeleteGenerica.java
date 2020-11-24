@@ -10,11 +10,6 @@ public class EstrategiaDeleteGenerica extends EstrategiaDelete{
 	}
 	
 	@Override
-	// Procedimiento de eliminacion:
-	// 1) Llamar m.remove(e.getEntidadGrafica());
-	// 2) eliminar e de la lista de entidades de m para que no se actualize mas
-		
-	// m.eliminarEntidad(e);
 	public void delete() {
 		e.setEliminado(true);
 		m.remove(e.getEntidadGrafica());

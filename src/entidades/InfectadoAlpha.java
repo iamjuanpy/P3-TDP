@@ -32,12 +32,6 @@ public class InfectadoAlpha extends Infectado {
 	}
 
 	@Override
-	public void eliminar() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void accept(Visitor v) {
 		v.visitInfectadoA(this);		
 	}

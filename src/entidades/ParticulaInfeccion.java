@@ -5,7 +5,6 @@ import visitors.Visitor;
 import visitors.VisitorParticulaI;
 
 public class ParticulaInfeccion extends Proyectil {
-
 	public ParticulaInfeccion(int da,Mapa m, int x, int y,  int vx, int vy) {
 		super(da,m,x,y,vx,-vy);
 		
@@ -15,12 +14,6 @@ public class ParticulaInfeccion extends Proyectil {
 		
 		visitante = new VisitorParticulaI();
 		delStrat = new EstrategiaDeleteGenerica(m,this);
-	}
-
-
-	@Override
-	public void eliminar() {
-		delStrat.delete();
 	}
 
 	@Override

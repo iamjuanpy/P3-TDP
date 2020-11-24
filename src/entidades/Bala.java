@@ -18,11 +18,6 @@ public class Bala extends Proyectil {
 	}
 
 	@Override
-	public void eliminar() {
-		delStrat.delete();
-	}
-
-	@Override
 	public void accept(Visitor v) {
 		v.visitBala(this);
 		

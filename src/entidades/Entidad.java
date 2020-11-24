@@ -21,12 +21,8 @@ public abstract class Entidad {
 		// parametros para inicializar una Entidad:
 		// posicion inicial, imagen, velocidad en los dos ejes
 		
-		// En vez de hacer inyeccion de dependencias, cada Entidad inicializa
-		// sus propias dependencias
-		eliminado = false;
-		
 		map = m;
-		
+		eliminado = false;		
 		velocidadX = vx;
 		velocidadY = vy;
 		
@@ -48,8 +44,11 @@ public abstract class Entidad {
 		return b1.intersects(b2);
 	}
 	
+	public void eliminar() {
+		delStrat.delete();
+	}
+	
 	public abstract void actualizar();
-	public abstract void eliminar();
 	public abstract void accept(Visitor v);
 	
 	public Grafico getEntidadGrafica() {
@@ -80,7 +79,7 @@ public abstract class Entidad {
 		this.velocidadY = velocidadY;
 	}
 
-	public boolean getEliminado() {
+	public boolean estaEliminado() {
 		return eliminado;
 	}
 	

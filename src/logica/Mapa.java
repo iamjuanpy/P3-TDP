@@ -73,15 +73,12 @@ public class Mapa extends JPanel {
 	}
 	
 	private void actualizarEntidades() {
-		
 		// Añadido para evitar ConcurrentException al agregar Entidad en actualizar().
-		
 		for (Entidad e : entidadesAñadir) {
 			entidades.add(e);
 		}
 		
-		entidadesAñadir = new ArrayList<Entidad>();
-		//
+		entidadesAñadir.clear();
 		
 		for (Entidad e : entidades) {
 			e.actualizar();
@@ -96,15 +93,13 @@ public class Mapa extends JPanel {
 	}
 	
 	private void eliminarEntidadesMuertas() {
-
-		for(int i=0; i<entidades.size(); i++) {
-			if (entidades.get(i).getEliminado()){
+		for(int i = 0; i < entidades.size(); i++) {
+			if (entidades.get(i).estaEliminado()){
 				entidades.remove(i);
 			}
 		}
 	        
 	}
-	
 	
 	// Delegar el input del usuario al jugador
 	// El jugador se lo pasa a su estrategia de movimiento
@@ -121,7 +116,7 @@ public class Mapa extends JPanel {
 	}
 	
 	public void agregarEntidad(Entidad e) {
-		entidadesAñadir.add(e); // entidades.add(e);
+		entidadesAñadir.add(e);
 	}
 
 	
@@ -129,5 +124,4 @@ public class Mapa extends JPanel {
 		return player;
 	}
 
-	
 }

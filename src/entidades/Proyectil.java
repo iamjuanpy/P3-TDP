@@ -4,8 +4,7 @@ import estrategias.EstrategiaMovProyectiles;
 import logica.Mapa;
 
 public abstract class Proyectil extends Entidad {
-
-	int daño;
+	protected int daño;
 	
 	public Proyectil(int da,Mapa m, int x, int y, int vx, int vy) {
 		super(m, x, y, vx, vy);
@@ -17,6 +16,5 @@ public abstract class Proyectil extends Entidad {
 		movStrat.mover();
 	}
 	
-	public abstract String toString();
-	
+	public abstract String toString();	
 }
