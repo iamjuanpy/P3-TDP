@@ -23,11 +23,14 @@ public class Mapa extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
 	private List<Entidad> entidades;
+	private List<Entidad> entidadesAñadir;
+
 	private JLabel background;
 	private Jugador player;
 	
 	public Mapa(int FPS, int limiteX, int limiteY) {
 		entidades = new ArrayList<Entidad>();
+		entidadesAñadir = new ArrayList<Entidad>();
 		
 		addKeyListener(new InputTeclado());
 		setFocusable(true);
@@ -68,6 +71,16 @@ public class Mapa extends JPanel {
 	}
 	
 	private void actualizarEntidades() {
+		
+		// Añadido para evitar ConcurrentException al agregar Entidad en actualizar().
+		
+		for (Entidad e : entidadesAñadir) {
+			entidades.add(e);
+		}
+		
+		entidadesAñadir = new ArrayList<Entidad>();
+		//
+		
 		for (Entidad e : entidades) {
 			e.actualizar();
 		}
@@ -94,7 +107,7 @@ public class Mapa extends JPanel {
 	}
 	
 	public void agregarEntidad(Entidad e) {
-		entidades.add(e);
+		entidadesAñadir.add(e); // entidades.add(e);
 		System.out.println("Cantidad de entidades: "+entidades.size()); // DEBUG
 	}
 
@@ -106,5 +119,6 @@ public class Mapa extends JPanel {
 	public Humano getPlayer() {
 		return player;
 	}
+
 	
 }

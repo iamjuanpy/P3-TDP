@@ -26,7 +26,9 @@ public class InfectadoAlpha extends Infectado {
 
 	@Override
 	public void actualizar() {
-		movStrat.mover();		
+		movStrat.mover();	
+		arma.tick();
+		arma.disparar();
 	}
 
 	@Override

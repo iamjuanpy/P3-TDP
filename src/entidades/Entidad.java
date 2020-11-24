@@ -74,4 +74,8 @@ public abstract class Entidad {
 		return visitante;
 	}
 	
+	public Mapa getMapa() {
+		return map;
+	}
+	
 }

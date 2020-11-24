@@ -55,7 +55,7 @@ public abstract class Arma {
 		if (timer == 0) {
 			
 			if (getNombre() == "ArmaInfectados") {
-				new ParticulaInfeccion(0, mapa, x+(owner.getEntidadGrafica().getAnchoImg()/2), y, 0, 10);
+				new ParticulaInfeccion(0, mapa, x+(owner.getEntidadGrafica().getAnchoImg()/2), y+(owner.getEntidadGrafica().getAltoImg()), 0, 10);
 			} else {
 				new Bala(0, mapa, x+offsetArmaX, y, 0, 10);
 			}
