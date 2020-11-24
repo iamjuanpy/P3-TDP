@@ -12,7 +12,6 @@ public class VisitorBala implements Visitor {
 	@Override
 	public void visitInfectadoA(InfectadoAlpha a) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

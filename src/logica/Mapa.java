@@ -79,7 +79,6 @@ public class Mapa extends JPanel {
 		}
 		
 		entidadesAñadir = new ArrayList<Entidad>();
-		//
 		
 		for (Entidad e : entidades) {
 			e.actualizar();

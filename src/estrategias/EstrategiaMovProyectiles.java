@@ -24,9 +24,9 @@ public class EstrategiaMovProyectiles extends EstrategiaMovimiento{
 		
 		// Hacer una strat de delete que permita eliminar con animacion(cuando pega a un enemigo) 
 		// Y sin animacion cuando se cae del mapa.
-		/*if (y < limiteY || y > limiteY2) {
+		if (y < limiteY || y > limiteY2) {
 			e.eliminar();
-		}*/
+		}
 		
 	}
 }

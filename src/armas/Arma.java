@@ -2,7 +2,6 @@ package armas;
 
 import entidades.Bala;
 import entidades.Humano;
-import entidades.ParticulaInfeccion;
 import logica.Mapa;
 
 public abstract class Arma {
@@ -30,7 +29,6 @@ public abstract class Arma {
 	/**
 	 * El dueño del arma le envia un tick() cada actualización para hacer
 	 * que el timer sea independiente de las veces que el usuario presiona la tecla de disparo
-	 * No se si es util para las armas de los infectados, asi que hay que ver cuando alguien las implemente
 	 */
 	public void tick() {
 		// System.out.println("timer: " + timer); // DEBUG
@@ -53,15 +51,8 @@ public abstract class Arma {
 		int y = owner.getEntidadGrafica().getY();
 		
 		if (timer == 0) {
-			
-			if (getNombre() == "ArmaInfectados") {
-				new ParticulaInfeccion(0, mapa, x+(owner.getEntidadGrafica().getAnchoImg()/2), y+(owner.getEntidadGrafica().getAltoImg()), 0, 10);
-			} else {
-				new Bala(0, mapa, x+offsetArmaX, y, 0, 10);
-			}
-			
+			new Bala(0, mapa, x+offsetArmaX, y, 0, 10);
 			timer++;
-			
 		}
 	}
 	
