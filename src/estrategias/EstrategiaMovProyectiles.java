@@ -14,10 +14,19 @@ public class EstrategiaMovProyectiles extends EstrategiaMovimiento{
 		y = y - e.getVelocidadY();
 		e.getEntidadGrafica().setY(y);
 		
-		//if (grafico.getY() <= limiteY || grafico.getY() >= limiteY2)
-		//	delStrat.delete(); 
-		//
+		if (limiteY == null) {
+			limiteY = (int) m.getBounds().getX();
+		}
+		
+		if (limiteY2 == null) {
+			limiteY2 = (int) m.getBounds().getHeight();
+		}
+		
 		// Hacer una strat de delete que permita eliminar con animacion(cuando pega a un enemigo) 
 		// Y sin animacion cuando se cae del mapa.
+		/*if (y < limiteY || y > limiteY2) {
+			e.eliminar();
+		}*/
+		
 	}
 }

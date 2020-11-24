@@ -6,12 +6,13 @@ import entidades.Entidad;
 import entidades.Jugador;
 
 public class EstrategiaMovJugador extends EstrategiaMovimiento {
-	
 	protected int velocidad;
+	private int anchoExtra;
 	
 	public EstrategiaMovJugador(Entidad ent) {
 		super(ent);
 		velocidad = ent.getVelocidadX();
+		anchoExtra = e.getEntidadGrafica().getAnchoImg();
 	}
 
 	@Override
@@ -19,9 +20,20 @@ public class EstrategiaMovJugador extends EstrategiaMovimiento {
 		int x = e.getEntidadGrafica().getX();
 		x += direccion;
 		
-		// if (x == limiteX2 - e.getEntidadGrafica().getAnchoImg() || x == limiteX + e.getEntidadGrafica().getAnchoImg() ) {
-		//		direccion = 0;
-		// }
+		if (limiteX2 == null) {
+			limiteX2 = (int) m.getBounds().getWidth();
+			System.out.println(limiteX2);
+		}
+		
+		if (limiteX == null) {
+			limiteX = (int) m.getBounds().getX();
+		}
+		
+		if (x < limiteX) {
+			x = limiteX;
+		} else if (x > limiteX2 - anchoExtra) {
+			x = limiteX2 - anchoExtra;
+		}
 		
 		e.getEntidadGrafica().setX(x);
 	}
