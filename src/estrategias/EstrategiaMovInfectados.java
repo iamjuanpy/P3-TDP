@@ -1,6 +1,7 @@
 package estrategias;
 
 import entidades.Entidad;
+import entidades.Humano;
 
 public class EstrategiaMovInfectados extends EstrategiaMovimiento {
 	
@@ -16,7 +17,10 @@ public class EstrategiaMovInfectados extends EstrategiaMovimiento {
 			y = (int) (m.getBounds().getX() - e.getEntidadGrafica().getAltoImg());
 		}
 		
-		e.getEntidadGrafica().setY(y);		
+		e.getEntidadGrafica().setY(y);
+		
+		// Se puede agregar un delay random para que no sean tan ritmicos los disparos
+		((Humano) e).disparar();
 	}
 
 }

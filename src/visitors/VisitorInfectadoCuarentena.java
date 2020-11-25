@@ -1,24 +1,16 @@
 package visitors;
 
-import entidades.Bala;
 import entidades.InfectadoAlpha;
 import entidades.InfectadoBeta;
-import entidades.Jugador;
-import entidades.ParticulaInfeccion;
-import entidades.PowerUp;
 import estrategias.EstrategiaMovInfectados;
 import estrategias.EstrategiaMovNulo;
 
-public class VisitorInfectadoCuarentena implements Visitor{
+public class VisitorInfectadoCuarentena extends Visitor {
 
 	boolean freeze;
 	
 	public VisitorInfectadoCuarentena(boolean v) {
 		freeze = v;
-	}
-	
-	@Override
-	public void visitJugador(Jugador j) {
 	}
 
 	@Override
@@ -34,20 +26,4 @@ public class VisitorInfectadoCuarentena implements Visitor{
 			b.setEstrategiaMov(new EstrategiaMovNulo(b));
 		else b.setEstrategiaMov(new EstrategiaMovInfectados(b));
 	}
-
-	@Override
-	public void visitParticulaI(ParticulaInfeccion p) {
-
-	}
-
-	@Override
-	public void visitBala(Bala b) {
-
-	}
-
-	@Override
-	public void visitPowerUp(PowerUp p) {
-
-	}
-
 }

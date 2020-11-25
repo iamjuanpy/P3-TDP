@@ -1,8 +1,8 @@
 package logica;
-import java.awt.EventQueue;
-import java.io.File;
 
+import java.awt.EventQueue;
 import javax.swing.JFrame;
+//import java.io.File;
 
 public class Juego extends JFrame {
 	private static final long serialVersionUID = -3673320636191996954L;

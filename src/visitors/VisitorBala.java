@@ -1,14 +1,7 @@
 package visitors;
 import entidades.*;
 
-public class VisitorBala implements Visitor {
-
-	@Override
-	public void visitJugador(Jugador j) {
-		// TODO Auto-generated method stub
-		
-	}
-
+public class VisitorBala extends Visitor {
 	@Override
 	public void visitInfectadoA(InfectadoAlpha a) {
 		// TODO Auto-generated method stub
@@ -20,23 +13,4 @@ public class VisitorBala implements Visitor {
 		// TODO Auto-generated method stub
 		
 	}
-
-	@Override
-	public void visitParticulaI(ParticulaInfeccion p) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitBala(Bala b) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitPowerUp(PowerUp p) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }
