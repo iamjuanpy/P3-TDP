@@ -1,6 +1,11 @@
 package premios;
 
+import java.util.List;
+
+import entidades.Entidad;
 import entidades.Jugador;
+import visitors.Visitor;
+import visitors.VisitorInfectadoCuarentena;
 
 public class Cuarentena extends EfectoTemporal {
 
@@ -13,7 +18,24 @@ public class Cuarentena extends EfectoTemporal {
 	
 	@Override
 	public void activar() {
-		// TODO Auto-generated method stub
+		
+		List<Entidad> entidades = jugador.getMapa().getEntidades();
+		Visitor v = new VisitorInfectadoCuarentena(true);
+		
+		for (Entidad e : entidades) {
+			e.accept(v);
+		}
+		
+	}
+	
+	protected void desactivar() {
+		
+		List<Entidad> entidades = jugador.getMapa().getEntidades();
+		Visitor v = new VisitorInfectadoCuarentena(false);
+		
+		for (Entidad e : entidades) {
+			e.accept(v);
+		}
 		
 	}
 

@@ -1,6 +1,7 @@
 package entidades;
 import armas.ArmaInfectados;
 import estrategias.EstrategiaMovInfectados;
+import estrategias.EstrategiaMovNulo;
 import visitors.VisitorInfectadoAlpha;
 import logica.Mapa;
 import visitors.Visitor;
@@ -26,9 +27,11 @@ public class InfectadoAlpha extends Infectado {
 
 	@Override
 	public void actualizar() {
-		movStrat.mover();	
-		arma.tick();
-		arma.disparar();
+		movStrat.mover();
+		if (!(movStrat instanceof EstrategiaMovNulo)) {
+			arma.tick();
+			arma.disparar();
+		}
 	}
 
 	@Override

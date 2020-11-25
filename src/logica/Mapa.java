@@ -16,6 +16,8 @@ import entidades.InfectadoAlpha;
 import entidades.InfectadoBeta;
 import entidades.Jugador;
 import entidades.PowerUp;
+import premios.ArmaTemporal;
+import premios.Cuarentena;
 import premios.Pocion;
 
 import java.util.ArrayList;
@@ -49,8 +51,11 @@ public class Mapa extends JPanel {
 		player.setCV(50);
 
 		new InfectadoAlpha(this,limiteX/2 + 70, 0 + 175,0,2); 
-		new InfectadoBeta(this,limiteX/2 - 70, 0 + 75,0,2); 		
+		new InfectadoBeta(this,limiteX/2 - 70, 0 + 75,0,2); 
+		
 		new PowerUp(new Pocion(player),this,limiteX/2,0,1,2);
+		new PowerUp(new ArmaTemporal(player),this,limiteX/2 + 90,0,1,2);
+		new PowerUp(new Cuarentena(player),this,limiteX/2 - 90,-150,1,2);
 		
 		//
 		
@@ -124,10 +129,13 @@ public class Mapa extends JPanel {
 		}
 	}
 	
+	public List<Entidad> getEntidades(){
+		return entidades;
+	}
+	
 	public void agregarEntidad(Entidad e) {
 		entidadesAñadir.add(e);
 	}
-
 	
 	public Humano getPlayer() {
 		return player;

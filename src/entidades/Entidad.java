@@ -87,4 +87,8 @@ public abstract class Entidad {
 		this.eliminado = eliminado;
 	}
 	
+	public void setEstrategiaMov(EstrategiaMovimiento e) {
+		movStrat = e;
+	}
+	
 }

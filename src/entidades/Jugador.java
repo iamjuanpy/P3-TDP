@@ -6,15 +6,18 @@ import estrategias.EstrategiaMovJugador;
 import visitors.Visitor;
 import visitors.VisitorJugador;
 import logica.Mapa;
+import premios.EfectoTemporal;
 
 public class Jugador extends Humano {
 	
 	protected boolean escudo;
+	protected EfectoTemporal ef;
 	
 	public Jugador(Mapa m, int x, int y, int vx, int vy) {
 		super(0, new ArmaDefault(m), m, x, y, vx ,vy);
 		
 		escudo = false;
+		ef = null;
 		
 		grafico = new Grafico("Jugador"+getArmaSeleccionada(), x, y);
 		m.add(grafico);
@@ -30,6 +33,8 @@ public class Jugador extends Humano {
 	public void actualizar() {
 		movStrat.mover();
 		arma.tick();
+		if (ef != null)
+			ef.tick();
 	}
 	
 	public void setEscudo(boolean v) {
@@ -51,6 +56,11 @@ public class Jugador extends Humano {
 	
 	public void keyReleased(KeyEvent e) {
 		((EstrategiaMovJugador)movStrat).keyReleased(e);
+	}
+
+
+	public void setEfectoTemporal(EfectoTemporal ef) {
+		this.ef = ef;
 	}
 	
 }
