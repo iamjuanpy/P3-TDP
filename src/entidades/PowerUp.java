@@ -14,11 +14,20 @@ public class PowerUp extends Entidad {
 		super(m,x,y,vx,vy);
 		this.e = e;
 		
+		grafico = new Grafico("PowerUp",x,y);
+		m.add(grafico);
+		m.setComponentZOrder(grafico, 0);
+		
 		visitante = new VisitorPowerUp();
 		movStrat = new EstrategiaMovPowerUps(this);
 		delStrat = new EstrategiaDeleteGenerica(m, this);
 	}
 
+	public void activar() {
+		e.activar();
+		delStrat.delete();
+	}
+	
 	@Override
 	public void actualizar() {
 		movStrat.mover();

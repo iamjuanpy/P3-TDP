@@ -35,8 +35,7 @@ public class VisitorJugador implements Visitor {
 
 	@Override
 	public void visitPowerUp(PowerUp p) {
-		// TODO Auto-generated method stub
-		
+		p.activar();
 	}
 
 }

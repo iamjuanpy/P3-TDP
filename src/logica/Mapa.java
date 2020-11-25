@@ -15,6 +15,8 @@ import entidades.Humano;
 import entidades.InfectadoAlpha;
 import entidades.InfectadoBeta;
 import entidades.Jugador;
+import entidades.PowerUp;
+import premios.Pocion;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,8 +45,14 @@ public class Mapa extends JPanel {
 		
 		player = new Jugador(this, limiteX/2, limiteY - 75, 6, 0);
 		
-		new InfectadoAlpha(this,limiteX/2 + 70, 0 + 175,0,2); // TEST Infectado
-		new InfectadoBeta(this,limiteX/2 - 70, 0 + 75,0,2); // TEST Infectado
+		// TEST
+		player.setCV(50);
+
+		new InfectadoAlpha(this,limiteX/2 + 70, 0 + 175,0,2); 
+		new InfectadoBeta(this,limiteX/2 - 70, 0 + 75,0,2); 		
+		new PowerUp(new Pocion(player),this,limiteX/2,0,1,2);
+		
+		//
 		
 		ActionListener eventoTimer = new ActionListener() {
 			@Override
@@ -52,6 +60,7 @@ public class Mapa extends JPanel {
 				actualizarEntidades();
 				resolverColisiones();
 				eliminarEntidadesMuertas();
+				System.out.println("Carga Viral: "+player.getCV()); // DEBUG
 				System.out.println("Cantidad de entidades: "+entidades.size()); // DEBUG
 			}
 		};

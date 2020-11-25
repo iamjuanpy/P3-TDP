@@ -33,7 +33,7 @@ public abstract class Entidad {
 		for (Entidad ent : l) {
 			if ((ent != this) && (hayColision(ent))) {
 				ent.accept(visitante);
-				this.accept(ent.getVisitor());
+			  //this.accept(ent.getVisitor());
 			}
 		}
 	}

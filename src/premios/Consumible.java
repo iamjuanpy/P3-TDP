@@ -1,5 +1,10 @@
 package premios;
 
-public interface Consumible extends EfectoPowerUp {
+import entidades.Jugador;
 
+public abstract class Consumible extends EfectoPowerUp {
+
+	public Consumible(Jugador j) {
+		super(j);
+	}
 }

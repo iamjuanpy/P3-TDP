@@ -28,4 +28,18 @@ public abstract class Humano extends Entidad {
 		arma.disparar();
 	}
 	
+	public void setCV(int a) {
+		
+		cargaViral = a;
+		
+		if (cargaViral < 0)
+			cargaViral = 0;
+		if (cargaViral > 100)
+			cargaViral = 100;
+	}
+	
+	public int getCV() {
+		return cargaViral;
+	}
+	
 }
