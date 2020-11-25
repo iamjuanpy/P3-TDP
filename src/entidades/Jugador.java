@@ -14,7 +14,8 @@ public class Jugador extends Humano {
 	protected EfectoTemporal ef;
 	
 	public Jugador(Mapa m, int x, int y, int vx, int vy) {
-		super(0, new ArmaDefault(m), m, x, y, vx ,vy);
+		super(new ArmaDefault(m), m, x, y, vx ,vy);
+		setCV(0);
 		
 		escudo = false;
 		ef = null;
@@ -31,8 +32,7 @@ public class Jugador extends Humano {
 
 	@Override
 	public void actualizar() {
-		movStrat.mover();
-		arma.tick();
+		super.actualizar();
 		if (ef != null)
 			ef.tick();
 	}

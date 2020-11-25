@@ -8,8 +8,10 @@ import visitors.Visitor;
 public class InfectadoAlpha extends Infectado {
 
 	public InfectadoAlpha(Mapa m, int x, int y, int vx, int vy) {
-		super(new ArmaInfectados(m),m,x,y,vx, vy);
+		// Son faciles de desinfectar, pero hacen mas daño
+		super(new ArmaInfectados(m, 15),m,x,y,vx, vy);
 		grafico = new Grafico("InfectadoAlfa",x,y);
+		setCV(cargaViralInicial/2);
 		
 		m.add(grafico);
 		m.setComponentZOrder(grafico, 0);
@@ -22,12 +24,6 @@ public class InfectadoAlpha extends Infectado {
 	public void atacarMelee() {
 		// TODO Auto-generated method stub
 		
-	}
-
-	@Override
-	public void actualizar() {
-		movStrat.mover();
-		arma.tick();
 	}
 
 	@Override

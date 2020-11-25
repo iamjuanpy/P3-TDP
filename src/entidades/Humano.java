@@ -8,12 +8,16 @@ public abstract class Humano extends Entidad {
 	protected int cargaViral;
 	protected Arma arma;
 	
-	public Humano(int cV, Arma a,Mapa m, int x, int y, int vx, int vy) {
+	public Humano(Arma a,Mapa m, int x, int y, int vx, int vy) {
 		super(m,x,y,vx,vy);
-		cargaViral = cV;
 		
 		arma = a;
 		a.setOwner(this);
+	}
+	
+	public void actualizar() {
+		movStrat.mover();
+		arma.tick();
 	}
 	
 	public String getArmaSeleccionada() {
