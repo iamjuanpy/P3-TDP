@@ -42,10 +42,10 @@ public class Mapa extends JPanel {
 		// Obtener el background de cada Nivel?
 		background = new JLabel();
 		background.setBounds(0, 0, limiteX, limiteY);
-		background.setIcon(new ImageIcon("img/bg.jpg"));
+		background.setIcon(new ImageIcon("img/bg4.png"));
 		add(background);
 		
-		player = new Jugador(this, limiteX/2, limiteY - 75, 6, 0);
+		player = new Jugador(this, limiteX/2, limiteY - 80, 6, 0);
 		
 		// TEST
 		player.setCV(50);
@@ -65,8 +65,8 @@ public class Mapa extends JPanel {
 				actualizarEntidades();
 				resolverColisiones();
 				eliminarEntidadesMuertas();
-				System.out.println("Carga Viral: "+player.getCV()); // DEBUG
-				System.out.println("Cantidad de entidades: "+entidades.size()); // DEBUG
+				//System.out.println("Carga Viral: "+player.getCV()); // DEBUG
+				//System.out.println("Cantidad de entidades: "+entidades.size()); // DEBUG
 			}
 		};
 		

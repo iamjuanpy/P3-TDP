@@ -18,6 +18,7 @@ public class Cuarentena extends EfectoTemporal {
 	
 	@Override
 	public void activar() {
+		jugador.setEfectoTemporal(this);
 		
 		List<Entidad> entidades = jugador.getMapa().getEntidades();
 		Visitor v = new VisitorInfectadoCuarentena(true);

@@ -11,7 +11,6 @@ public abstract class EfectoTemporal extends EfectoPowerUp{
 		super(j);
 		duracion = d;
 		tick = duracion;
-		jugador.setEfectoTemporal(this);
 	}
 
 	public void tick() {

@@ -32,9 +32,12 @@ public class Jugador extends Humano {
 
 	@Override
 	public void actualizar() {
+
 		super.actualizar();
-		if (ef != null)
+		if (ef != null) {
 			ef.tick();
+		}
+
 	}
 	
 	public void setEscudo(boolean v) {

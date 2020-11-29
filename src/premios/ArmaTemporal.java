@@ -31,13 +31,15 @@ public class ArmaTemporal extends EfectoTemporal {
 	}
 	@Override
 	public void activar() {
+		jugador.setEfectoTemporal(this);
+		
 		jugador.setArma(arma);
 		arma.setOwner(jugador);
 	}
 
 	protected void desactivar() {
 		Arma aux = new ArmaDefault(jugador.getMapa());
-		
+
 		jugador.setArma(aux);
 		aux.setOwner(jugador);
 	}
