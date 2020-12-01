@@ -19,16 +19,16 @@ public class AnimacionTemporal extends Entidad{
 		
 		visitante = new VisitorAnimacionTemporal();
 		delStrat = new EstrategiaDeleteGenerica(juego,this);
-		//movStrat = new EstrategiaMovNulo();
 	}
 
 	@Override
 	public void actualizar() {
 		duracion--;
-		System.out.println(duracion);
 		
-		if (duracion<0)
+		if (duracion<0) {
+			grafico.setVisible(false);
 			delStrat.delete();
+		}
 	}
 
 	@Override

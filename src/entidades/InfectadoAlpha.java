@@ -19,7 +19,15 @@ public class InfectadoAlpha extends Infectado {
 
 	@Override
 	public void atacarMelee() {
-		// TODO Auto-generated method stub
+		
+		if (!golpeo) {
+			int xEfec = juego.getPlayer().getEntidadGrafica().getX()+20;
+			int yEfec = juego.getPlayer().getEntidadGrafica().getY()+25;
+			Entidad ent = new AnimacionTemporal("Melee",juego,xEfec,yEfec,0,0,5);
+			juego.agregarEntidad(ent);
+			golpeo = true;
+		}
+
 		
 	}
 

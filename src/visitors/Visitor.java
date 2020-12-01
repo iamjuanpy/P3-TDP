@@ -8,4 +8,5 @@ public abstract class Visitor {
 	public void visitParticulaI(ParticulaInfeccion p) {}
 	public void visitBala(Bala b) {}
 	public void visitPowerUp(PowerUp p) {}
+	public void visitAnimacionTemporal(AnimacionTemporal a) {}
 }

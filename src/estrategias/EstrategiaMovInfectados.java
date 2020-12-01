@@ -2,6 +2,7 @@ package estrategias;
 
 import entidades.Entidad;
 import entidades.Humano;
+import entidades.Infectado;
 
 public class EstrategiaMovInfectados extends EstrategiaMovimiento {
 	
@@ -15,6 +16,7 @@ public class EstrategiaMovInfectados extends EstrategiaMovimiento {
 		
 		if (y > juego.getMapa().getBounds().getHeight() + e.getEntidadGrafica().getAltoImg()) {
 			y = (int) (juego.getMapa().getBounds().getX() - e.getEntidadGrafica().getAltoImg());
+			((Infectado) e).setGolpeo(false);
 		}
 		
 		e.getEntidadGrafica().setY(y);

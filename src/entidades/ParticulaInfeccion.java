@@ -1,6 +1,6 @@
 package entidades;
 
-import estrategias.EstrategiaDeleteGenerica;
+import estrategias.EstrategiaDeleteInfeccion;
 import visitors.Visitor;
 import visitors.VisitorParticulaI;
 
@@ -11,7 +11,7 @@ public class ParticulaInfeccion extends Proyectil {
 		
 		grafico = new Grafico("Infeccion",x,y);
 		visitante = new VisitorParticulaI();
-		delStrat = new EstrategiaDeleteGenerica(juego,this);
+		delStrat = new EstrategiaDeleteInfeccion(juego,this);
 	}
 
 	@Override

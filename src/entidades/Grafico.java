@@ -34,7 +34,7 @@ public class Grafico extends JLabel {
 			mapeoSprites.put("Bala", new ImageIcon("img/bala.png"));
 			mapeoSprites.put("Infeccion", new ImageIcon("img/infeccion.png"));
 			mapeoSprites.put("PowerUp", new ImageIcon("img/powerup.gif"));
-			mapeoSprites.put("DeleteInfeccion", new ImageIcon("img/hitInfeccion.png"));
+			mapeoSprites.put("DeleteInfeccion", new ImageIcon("img/hitInfeccion.gif"));
 			mapeoSprites.put("DeleteBala", new ImageIcon("img/explosion.gif"));
 			mapeoSprites.put("Melee", new ImageIcon("img/hit.gif"));
 		}
