@@ -4,7 +4,7 @@ import java.util.List;
 
 import estrategias.EstrategiaDelete;
 import estrategias.EstrategiaMovimiento;
-import logica.Mapa;
+import logica.Juego;
 import visitors.Visitor;
 
 public abstract class Entidad {
@@ -13,27 +13,24 @@ public abstract class Entidad {
 	
 	protected boolean eliminado;
 	protected Visitor visitante;
-	protected Mapa map;
+	protected Juego juego;
 	protected EstrategiaMovimiento movStrat;
 	protected EstrategiaDelete delStrat;
 	
-	public Entidad(Mapa m, int x, int y, int vx, int vy) {
+	public Entidad(Juego juego, int x, int y, int vx, int vy) {
 		// parametros para inicializar una Entidad:
 		// posicion inicial, imagen, velocidad en los dos ejes
 		
-		map = m;
+		this.juego = juego;
 		eliminado = false;		
 		velocidadX = vx;
 		velocidadY = vy;
-		
-		map.agregarEntidad(this);
 	}
 	
 	public void buscarColisiones(List<Entidad> l) {
 		for (Entidad ent : l) {
 			if ((ent != this) && (hayColision(ent))) {
 				ent.accept(visitante);
-			  //this.accept(ent.getVisitor());
 			}
 		}
 	}
@@ -55,10 +52,10 @@ public abstract class Entidad {
 		return grafico;
 	}
 	
-	public Mapa getMapa() {
-		return map;
+	public Juego getJuego() {
+		return juego;
 	}
-	
+
 	public Visitor getVisitor() {
 		return visitante;
 	}

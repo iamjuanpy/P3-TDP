@@ -2,23 +2,23 @@ package armas;
 
 import entidades.Bala;
 import entidades.Humano;
-import logica.Mapa;
+import logica.Juego;
 
 public abstract class Arma {
 
 	protected int cadencia;
 	protected int daño;
-	protected Mapa mapa;
+	protected Juego juego;
 	protected Humano owner;
 	protected int timer;
 	protected String nombre;
 	protected int offsetArmaX;
 	protected int offsetArmaY;
 	
-	public Arma(Mapa m,int d,int c) {
+	public Arma(Juego juego,int d,int c) {
 		daño = d;
 		cadencia = c;
-		mapa = m;
+		this.juego = juego;
 		timer = 0;
 	}
 	
@@ -51,7 +51,8 @@ public abstract class Arma {
 		int y = owner.getEntidadGrafica().getY();
 		
 		if (timer == 0) {
-			new Bala(daño, mapa, x+offsetArmaX, y, 0, 10);
+			Bala b = new Bala(daño, juego, x+offsetArmaX, y, 0, 10);
+			juego.agregarEntidad(b);
 			timer++;
 		}
 	}

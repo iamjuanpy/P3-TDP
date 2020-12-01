@@ -21,12 +21,12 @@ public class EstrategiaMovJugador extends EstrategiaMovimiento {
 		x += direccion;
 		
 		if (limiteX2 == null) {
-			limiteX2 = (int) m.getBounds().getWidth();
-			System.out.println(limiteX2);
+			limiteX2 = (int) juego.getMapa().getBounds().getWidth();
+			// System.out.println(limiteX2);
 		}
 		
 		if (limiteX == null) {
-			limiteX = (int) m.getBounds().getX();
+			limiteX = (int) juego.getMapa().getBounds().getX();
 		}
 		
 		if (x < limiteX) {

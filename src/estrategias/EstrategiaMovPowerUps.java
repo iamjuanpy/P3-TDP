@@ -14,7 +14,7 @@ public class EstrategiaMovPowerUps extends EstrategiaMovimiento{
 		e.getEntidadGrafica().setY(y);
 		
 		if (limiteY2 == null) {
-			limiteY2 = (int) m.getBounds().getHeight();
+			limiteY2 = (int) juego.getMapa().getBounds().getHeight();
 		}
 		
 		// Agregarle a entidad un metodo getMapa() para conseguir el tamaño del mismo?

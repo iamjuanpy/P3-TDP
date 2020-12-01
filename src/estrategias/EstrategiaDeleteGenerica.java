@@ -1,18 +1,17 @@
 package estrategias;
 
+import logica.Juego;
 import entidades.Entidad;
-import logica.Mapa;
 
 public class EstrategiaDeleteGenerica extends EstrategiaDelete{
 
-	public EstrategiaDeleteGenerica(Mapa m, Entidad e) {
-		super(m,e);
+	public EstrategiaDeleteGenerica(Juego juego, Entidad e) {
+		super(juego,e);
 	}
 	
 	@Override
 	public void delete() {
 		e.setEliminado(true);
-		m.remove(e.getEntidadGrafica());
 	}
 
 }

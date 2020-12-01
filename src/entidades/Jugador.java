@@ -1,11 +1,12 @@
 package entidades;
+
 import java.awt.event.KeyEvent;
 
 import armas.ArmaDefault;
 import estrategias.EstrategiaMovJugador;
 import visitors.Visitor;
 import visitors.VisitorJugador;
-import logica.Mapa;
+import logica.Juego;
 import premios.EfectoTemporal;
 
 public class Jugador extends Humano {
@@ -13,20 +14,22 @@ public class Jugador extends Humano {
 	protected boolean escudo;
 	protected EfectoTemporal ef;
 	
-	public Jugador(Mapa m, int x, int y, int vx, int vy) {
-		super(new ArmaDefault(m), m, x, y, vx ,vy);
+	public Jugador(Juego juego, int x, int y, int vx, int vy) {
+		super(new ArmaDefault(juego), juego, x, y, vx ,vy);
 		setCV(0);
 		
 		escudo = false;
 		ef = null;
 		
 		grafico = new Grafico("Jugador"+getArmaSeleccionada(), x, y);
-		m.add(grafico);
-		m.setComponentZOrder(grafico, 0);
 		 
 		// this.delStrat = new EstrategiaDeleteJugador();
 		visitante = new VisitorJugador();
 		this.movStrat = new EstrategiaMovJugador(this);		
+	}
+	
+	public Juego getJuego() {
+		return juego;
 	}
 	
 

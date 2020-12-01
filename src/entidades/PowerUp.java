@@ -3,24 +3,22 @@ import visitors.Visitor;
 import visitors.VisitorPowerUp;
 import estrategias.EstrategiaDeleteGenerica;
 import estrategias.EstrategiaMovPowerUps;
-import logica.Mapa;
+import logica.Juego;
 import premios.EfectoPowerUp;
 
 public class PowerUp extends Entidad {
 
 	private EfectoPowerUp e;
 	
-	public PowerUp(EfectoPowerUp e, Mapa m, int x, int y, int vx, int vy) {
-		super(m,x,y,vx,vy);
+	public PowerUp(EfectoPowerUp e, Juego juego, int x, int y, int vx, int vy) {
+		super(juego,x,y,vx,vy);
 		this.e = e;
 		
 		grafico = new Grafico("PowerUp",x,y);
-		m.add(grafico);
-		m.setComponentZOrder(grafico, 0);
 		
 		visitante = new VisitorPowerUp();
 		movStrat = new EstrategiaMovPowerUps(this);
-		delStrat = new EstrategiaDeleteGenerica(m, this);
+		delStrat = new EstrategiaDeleteGenerica(juego, this);
 	}
 
 	public void activar() {

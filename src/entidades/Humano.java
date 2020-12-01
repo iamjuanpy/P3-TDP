@@ -1,15 +1,15 @@
 package entidades;
 
 import armas.Arma;
-import logica.Mapa;
+import logica.Juego;
 
 public abstract class Humano extends Entidad {
 
 	protected int cargaViral;
 	protected Arma arma;
 	
-	public Humano(Arma a,Mapa m, int x, int y, int vx, int vy) {
-		super(m,x,y,vx,vy);
+	public Humano(Arma a,Juego juego, int x, int y, int vx, int vy) {
+		super(juego,x,y,vx,vy);
 		
 		arma = a;
 		a.setOwner(this);
