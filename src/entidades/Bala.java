@@ -1,5 +1,5 @@
 package entidades;
-import estrategias.EstrategiaDeleteGenerica;
+import estrategias.EstrategiaDeleteBala;
 import logica.Juego;
 
 import visitors.Visitor;
@@ -13,7 +13,7 @@ public class Bala extends Proyectil {
 		grafico = new Grafico ("Bala",x,y);
 		
 		visitante = new VisitorBala();
-		delStrat = new EstrategiaDeleteGenerica(juego,this);
+		delStrat = new EstrategiaDeleteBala(juego,this);
 	}
 
 	@Override

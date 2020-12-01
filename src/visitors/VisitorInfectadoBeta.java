@@ -11,8 +11,7 @@ public class VisitorInfectadoBeta extends Visitor {
 	
 	@Override
 	public void visitBala(Bala b) {
-		// TODO Auto-generated method stub
-		
+		b.eliminar();
 	}
 
 }
