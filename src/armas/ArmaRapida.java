@@ -1,13 +1,14 @@
 package armas;
 
+
 import entidades.Bala;
-import logica.Mapa;
+import logica.Juego;
 
 public class ArmaRapida extends Arma {
 
-	public ArmaRapida(Mapa m) {
+	public ArmaRapida(Juego juego) {
 		// Menos daño pero dispara mas rapido
-		super(m,5,10);
+		super(juego,5,10);
 		nombre = "Rapida";
 		offsetArmaX = 24;
 		offsetArmaY = 0;
@@ -16,11 +17,15 @@ public class ArmaRapida extends Arma {
 	public void disparar() {
 		int x = owner.getEntidadGrafica().getX();
 		int y = owner.getEntidadGrafica().getY();
+		Bala b;
 		
 		if (timer == 0) {
-			new Bala(daño, mapa, x+offsetArmaX, y, 0, 10);
-			new Bala(daño, mapa, x+offsetArmaX, y-25, 0, 10);
-			new Bala(daño, mapa, x+offsetArmaX, y-15, 0, 10);
+			b = new Bala(daño, juego, x+offsetArmaX, y, 0, 10);
+			juego.agregarEntidad(b);
+			b = new Bala(daño, juego, x+offsetArmaX, y-25, 0, 10);
+			juego.agregarEntidad(b);
+			b = new Bala(daño, juego, x+offsetArmaX, y-15, 0, 10);
+			juego.agregarEntidad(b);
 			timer++;
 		}
 	}

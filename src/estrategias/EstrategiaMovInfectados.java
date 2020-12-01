@@ -13,8 +13,8 @@ public class EstrategiaMovInfectados extends EstrategiaMovimiento {
 		int y = e.getEntidadGrafica().getY();
 		y += e.getVelocidadY();
 		
-		if (y > m.getBounds().getHeight() + e.getEntidadGrafica().getAltoImg()) {
-			y = (int) (m.getBounds().getX() - e.getEntidadGrafica().getAltoImg());
+		if (y > juego.getMapa().getBounds().getHeight() + e.getEntidadGrafica().getAltoImg()) {
+			y = (int) (juego.getMapa().getBounds().getX() - e.getEntidadGrafica().getAltoImg());
 		}
 		
 		e.getEntidadGrafica().setY(y);

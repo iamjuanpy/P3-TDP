@@ -1,12 +1,12 @@
 package armas;
 
-import logica.Mapa;
+import logica.Juego;
 
 public class SuperArma extends Arma {
 
-	public SuperArma(Mapa m) {
+	public SuperArma(Juego juego) {
 		// Mucho daño, alta cadencia
-		super(m,30, 15);
+		super(juego,30, 15);
 		
 		nombre = "Super";
 	}

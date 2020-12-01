@@ -1,12 +1,12 @@
 package estrategias;
 
 import entidades.Entidad;
-import logica.Mapa;
+import logica.Juego;
 
 public abstract class EstrategiaMovimiento {
 	protected int direccion;
 	protected Entidad e;
-	protected Mapa m;
+	protected Juego juego;
 	
 	// Tienen que ser Integer porque no se pueden inicializar hasta que la ventana se muestra entera
 	protected Integer limiteX;
@@ -16,7 +16,7 @@ public abstract class EstrategiaMovimiento {
 	
 	public EstrategiaMovimiento(Entidad e) {
 		this.e = e;
-		m = e.getMapa();
+		juego = e.getJuego();
 	}
 	
 	public abstract void mover();

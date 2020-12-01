@@ -1,15 +1,15 @@
 package estrategias;
 
 import entidades.Entidad;
-import logica.Mapa;
+import logica.Juego;
 
 public abstract class EstrategiaDelete {
 	
 	protected Entidad e;
-	protected Mapa m;
+	protected Juego juego;
 	
-	public EstrategiaDelete(Mapa m, Entidad e) {
-		this.m = m;
+	public EstrategiaDelete(Juego juego, Entidad e) {
+		this.juego = juego;
 		this.e = e;
 	}
 	

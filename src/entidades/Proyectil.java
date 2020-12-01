@@ -1,13 +1,13 @@
 package entidades;
 
 import estrategias.EstrategiaMovProyectiles;
-import logica.Mapa;
+import logica.Juego;
 
 public abstract class Proyectil extends Entidad {
 	protected int daño;
 	
-	public Proyectil(int da,Mapa m, int x, int y, int vx, int vy) {
-		super(m, x, y, vx, vy);
+	public Proyectil(int da,Juego juego, int x, int y, int vx, int vy) {
+		super(juego, x, y, vx, vy);
 		daño = da;
 		movStrat = new EstrategiaMovProyectiles(this);
 	}

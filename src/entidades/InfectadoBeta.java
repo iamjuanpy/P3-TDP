@@ -1,21 +1,18 @@
 package entidades;
 import armas.ArmaInfectados;
+import logica.Juego;
 import estrategias.EstrategiaMovInfectados;
-import logica.Mapa;
 import visitors.Visitor;
 import visitors.VisitorInfectadoBeta;
 
 public class InfectadoBeta extends Infectado {
 
-	public InfectadoBeta(Mapa m, int x, int y, int vx, int vy) {
+	public InfectadoBeta(Juego juego, int x, int y, int vx, int vy) {
 		// Son mas dificiles de desinfectar, pero hacen menos daño
-		super(new ArmaInfectados(m, 10),m,x,y,vx,vy);
+		super(new ArmaInfectados(juego, 10),juego,x,y,vx,vy);
 		setCV(cargaViralInicial);
 		
 		grafico = new Grafico("InfectadoBeta",x,y);
-		
-		m.add(grafico);
-		m.setComponentZOrder(grafico, 0);
 		
 		visitante = new VisitorInfectadoBeta();
 		movStrat = new EstrategiaMovInfectados(this);

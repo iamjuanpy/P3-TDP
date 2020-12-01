@@ -1,20 +1,19 @@
 package entidades;
 import estrategias.EstrategiaDeleteGenerica;
-import logica.Mapa;
+import logica.Juego;
+
 import visitors.Visitor;
 import visitors.VisitorBala;
 
 public class Bala extends Proyectil {
 
-	public Bala(int da,Mapa m, int x, int y, int vx, int vy) {
-		super(da,m,x,y,vx,vy);
+	public Bala(int da,Juego juego, int x, int y, int vx, int vy) {
+		super(da,juego,x,y,vx,vy);
 		
 		grafico = new Grafico ("Bala",x,y);
-		m.add(grafico);
-		m.setComponentZOrder(grafico,0);
 		
 		visitante = new VisitorBala();
-		delStrat = new EstrategiaDeleteGenerica(m,this);
+		delStrat = new EstrategiaDeleteGenerica(juego,this);
 	}
 
 	@Override
