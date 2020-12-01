@@ -19,13 +19,14 @@ public class Mapa extends JPanel {
 	public Mapa(int limiteX, int limiteY) {
 		addKeyListener(new InputTeclado());
 		setFocusable(true);
+		setLayout(null);
 		
 		setBounds(0, 0, limiteX, limiteY);
 		
 		// Obtener el background de cada Nivel?
 		background = new JLabel();
 		background.setBounds(0, 0, limiteX, limiteY);
-		background.setIcon(new ImageIcon("img/bg3.png"));
+		background.setIcon(new ImageIcon("img/bg2.png"));
 		add(background);
 	}
 	

@@ -1,6 +1,7 @@
 package logica;
 
 import java.awt.EventQueue;
+
 import javax.swing.JFrame;
 //import java.io.File;
 
@@ -27,6 +28,7 @@ public class Ventana extends JFrame {
 	
 	public Ventana() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLayout(null);
 		
 		setBounds(50, 50, 600, 800);
 		setTitle("Proyecto 3");
@@ -46,6 +48,7 @@ public class Ventana extends JFrame {
 		Juego juego = new Juego(60 /* FPS */, this.getWidth(), this.getHeight());
 		mapa = new Mapa(this.getWidth(), this.getHeight());
 		setContentPane(mapa);
+
 		juego.setMapa(mapa);
 		
 		juego.crearJugador();
