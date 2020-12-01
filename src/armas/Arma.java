@@ -15,7 +15,7 @@ public abstract class Arma {
 	protected int offsetArmaX;
 	protected int offsetArmaY;
 	
-	public Arma(Mapa m,int d, int c) {
+	public Arma(Mapa m,int d,int c) {
 		daño = d;
 		cadencia = c;
 		mapa = m;
@@ -51,7 +51,7 @@ public abstract class Arma {
 		int y = owner.getEntidadGrafica().getY();
 		
 		if (timer == 0) {
-			new Bala(0, mapa, x+offsetArmaX, y, 0, 10);
+			new Bala(daño, mapa, x+offsetArmaX, y, 0, 10);
 			timer++;
 		}
 	}

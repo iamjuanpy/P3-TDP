@@ -42,7 +42,7 @@ public class Mapa extends JPanel {
 		// Obtener el background de cada Nivel?
 		background = new JLabel();
 		background.setBounds(0, 0, limiteX, limiteY);
-		background.setIcon(new ImageIcon("img/bg4.png"));
+		background.setIcon(new ImageIcon("img/bg3.png"));
 		add(background);
 		
 		player = new Jugador(this, limiteX/2, limiteY - 80, 6, 0);
