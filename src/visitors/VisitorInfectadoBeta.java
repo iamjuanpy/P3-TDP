@@ -9,8 +9,11 @@ public class VisitorInfectadoBeta extends Visitor {
 
 	@Override
 	public void visitJugador(Jugador j) {
-		// TODO Auto-generated method stub
-		
+		Infectado aux = (Infectado) e;
+		if (!aux.getGolpeo()) {
+			j.setCV(j.getCV() + aux.getDaño());
+			aux.atacarMelee();
+		}
 	}
 	
 	@Override

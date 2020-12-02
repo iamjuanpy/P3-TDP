@@ -3,6 +3,7 @@ package entidades;
 import java.awt.event.KeyEvent;
 
 import armas.ArmaDefault;
+import estrategias.EstrategiaDeleteJugador;
 import estrategias.EstrategiaMovJugador;
 import visitors.Visitor;
 import visitors.VisitorJugador;
@@ -23,7 +24,7 @@ public class Jugador extends Humano {
 		
 		grafico = new Grafico("Jugador"+getArmaSeleccionada(), x, y);
 		 
-		// this.delStrat = new EstrategiaDeleteJugador();
+		this.delStrat = new EstrategiaDeleteJugador(juego,this);
 		visitante = new VisitorJugador(this);
 		this.movStrat = new EstrategiaMovJugador(this);		
 	}

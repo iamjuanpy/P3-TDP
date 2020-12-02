@@ -43,7 +43,7 @@ public class Juego extends JPanel {
 				actualizarEntidades();
 				resolverColisiones();
 				eliminarEntidadesMuertas();
-				// System.out.println("Carga Viral: "+player.getCV()); // DEBUG
+				System.out.println("Carga Viral: "+player.getCV()); // DEBUG
 				//System.out.println("Cantidad de entidades: "+entidades.size()); // DEBUG
 			}
 		};

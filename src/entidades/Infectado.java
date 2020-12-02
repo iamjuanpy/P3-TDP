@@ -27,4 +27,11 @@ public abstract class Infectado extends Humano {
 		golpeo = v;
 	}
 	
+	public boolean getGolpeo() {
+		return golpeo;
+	}
+	
+	public int getDaño() {
+		return arma.getDaño();
+	}
 }

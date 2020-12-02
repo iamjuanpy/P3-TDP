@@ -60,5 +60,9 @@ public abstract class Arma {
 	public String getNombre() {
 		return nombre;
 	}
+	
+	public int getDaño() {
+		return daño;
+	}
 
 }
