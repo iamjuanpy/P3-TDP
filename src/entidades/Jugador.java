@@ -24,7 +24,7 @@ public class Jugador extends Humano {
 		grafico = new Grafico("Jugador"+getArmaSeleccionada(), x, y);
 		 
 		// this.delStrat = new EstrategiaDeleteJugador();
-		visitante = new VisitorJugador();
+		visitante = new VisitorJugador(this);
 		this.movStrat = new EstrategiaMovJugador(this);		
 	}
 	
@@ -39,6 +39,10 @@ public class Jugador extends Humano {
 		super.actualizar();
 		if (ef != null) {
 			ef.tick();
+		}
+		
+		if (getCV() >= 100) {
+			eliminar();
 		}
 
 	}

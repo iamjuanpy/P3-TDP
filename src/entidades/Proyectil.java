@@ -12,6 +12,10 @@ public abstract class Proyectil extends Entidad {
 		movStrat = new EstrategiaMovProyectiles(this);
 	}
 	
+	public int getDaño() {
+		return daño;
+	}
+	
 	public void actualizar() {
 		movStrat.mover();
 	}

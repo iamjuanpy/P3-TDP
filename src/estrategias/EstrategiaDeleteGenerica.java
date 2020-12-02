@@ -1,6 +1,7 @@
 package estrategias;
 
 import logica.Juego;
+
 import entidades.Entidad;
 
 public class EstrategiaDeleteGenerica extends EstrategiaDelete{

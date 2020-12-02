@@ -21,7 +21,7 @@ public class Cuarentena extends EfectoTemporal {
 		jugador.setEfectoTemporal(this);
 		
 		List<Entidad> entidades = jugador.getJuego().getEntidades();
-		Visitor v = new VisitorInfectadoCuarentena(true);
+		Visitor v = new VisitorInfectadoCuarentena(null, true);
 		
 		for (Entidad e : entidades) {
 			e.accept(v);
@@ -32,7 +32,7 @@ public class Cuarentena extends EfectoTemporal {
 	protected void desactivar() {
 		
 		List<Entidad> entidades = jugador.getJuego().getEntidades();
-		Visitor v = new VisitorInfectadoCuarentena(false);
+		Visitor v = new VisitorInfectadoCuarentena(null, false);
 		
 		for (Entidad e : entidades) {
 			e.accept(v);

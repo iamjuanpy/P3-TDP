@@ -13,7 +13,7 @@ public class InfectadoAlpha extends Infectado {
 		grafico = new Grafico("InfectadoAlfa",x,y);
 		setCV(cargaViralInicial/2);
 		
-		visitante = new VisitorInfectadoAlpha();
+		visitante = new VisitorInfectadoAlpha(this);
 		movStrat = new EstrategiaMovInfectados(this);
 	}
 

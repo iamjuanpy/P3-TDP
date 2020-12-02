@@ -10,7 +10,7 @@ public class ParticulaInfeccion extends Proyectil {
 		super(da,juego,x,y,vx,-vy);
 		
 		grafico = new Grafico("Infeccion",x,y);
-		visitante = new VisitorParticulaI();
+		visitante = new VisitorParticulaI(this);
 		delStrat = new EstrategiaDeleteInfeccion(juego,this);
 	}
 

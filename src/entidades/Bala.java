@@ -12,7 +12,7 @@ public class Bala extends Proyectil {
 		
 		grafico = new Grafico ("Bala",x,y);
 		
-		visitante = new VisitorBala();
+		visitante = new VisitorBala(this);
 		delStrat = new EstrategiaDeleteBala(juego,this);
 	}
 

@@ -1,4 +1,5 @@
 package entidades;
+
 import armas.ArmaInfectados;
 import logica.Juego;
 import estrategias.EstrategiaMovInfectados;
@@ -14,7 +15,7 @@ public class InfectadoBeta extends Infectado {
 		
 		grafico = new Grafico("InfectadoBeta",x,y);
 		
-		visitante = new VisitorInfectadoBeta();
+		visitante = new VisitorInfectadoBeta(this);
 		movStrat = new EstrategiaMovInfectados(this);
 	}
 

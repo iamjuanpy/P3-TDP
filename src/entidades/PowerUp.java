@@ -16,7 +16,7 @@ public class PowerUp extends Entidad {
 		
 		grafico = new Grafico("PowerUp",x,y);
 		
-		visitante = new VisitorPowerUp();
+		visitante = new VisitorPowerUp(this);
 		movStrat = new EstrategiaMovPowerUps(this);
 		delStrat = new EstrategiaDeleteGenerica(juego, this);
 	}

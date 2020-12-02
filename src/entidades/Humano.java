@@ -1,6 +1,7 @@
 package entidades;
 
 import armas.Arma;
+import estrategias.EstrategiaDeleteGenerica;
 import logica.Juego;
 
 public abstract class Humano extends Entidad {
@@ -13,6 +14,8 @@ public abstract class Humano extends Entidad {
 		
 		arma = a;
 		a.setOwner(this);
+		
+		delStrat = new EstrategiaDeleteGenerica(juego, this);
 	}
 	
 	public void actualizar() {

@@ -22,7 +22,6 @@ public class EstrategiaMovJugador extends EstrategiaMovimiento {
 		
 		if (limiteX2 == null) {
 			limiteX2 = (int) juego.getMapa().getBounds().getWidth();
-			// System.out.println(limiteX2);
 		}
 		
 		if (limiteX == null) {

@@ -17,7 +17,7 @@ public class AnimacionTemporal extends Entidad{
 		grafico = new Grafico(g,x,y);
 		
 		
-		visitante = new VisitorAnimacionTemporal();
+		visitante = new VisitorAnimacionTemporal(this);
 		delStrat = new EstrategiaDeleteGenerica(juego,this);
 	}
 

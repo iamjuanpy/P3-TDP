@@ -8,8 +8,12 @@ import entidades.Entidad;
 import entidades.InfectadoAlpha;
 import entidades.InfectadoBeta;
 import entidades.Jugador;
+import entidades.PowerUp;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import premios.*;
 
 public class Juego extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -39,8 +43,7 @@ public class Juego extends JPanel {
 				actualizarEntidades();
 				resolverColisiones();
 				eliminarEntidadesMuertas();
-				//mapa.repaint();
-				//System.out.println("Carga Viral: "+player.getCV()); // DEBUG
+				// System.out.println("Carga Viral: "+player.getCV()); // DEBUG
 				//System.out.println("Cantidad de entidades: "+entidades.size()); // DEBUG
 			}
 		};
@@ -68,12 +71,12 @@ public class Juego extends JPanel {
 		agregarEntidad(ia);
 		agregarEntidad(ib);
 		
-		/* Entidad p1 = new PowerUp(new Pocion(player),this,limiteX/2,0,1,2);
-		agregarGrafico(p1.getEntidadGrafica());
+		Entidad p1 = new PowerUp(new Pocion(player),this,limiteX/2,0,1,2);
+		agregarEntidad(p1);
 		Entidad p2 = new PowerUp(new ArmaTemporal(player),this,limiteX/2 + 90,0,1,2);
-		agregarGrafico(p2.getEntidadGrafica());
+		agregarEntidad(p2);
 		Entidad p3 = new PowerUp(new Cuarentena(player),this,limiteX/2 - 90,-150,1,2);
-		agregarGrafico(p3.getEntidadGrafica());*/
+		agregarEntidad(p3);
 	}
 	
 	public void crearJugador() {

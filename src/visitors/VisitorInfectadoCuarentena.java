@@ -1,5 +1,6 @@
 package visitors;
 
+import entidades.Entidad;
 import entidades.InfectadoAlpha;
 import entidades.InfectadoBeta;
 import estrategias.EstrategiaMovInfectados;
@@ -9,7 +10,9 @@ public class VisitorInfectadoCuarentena extends Visitor {
 
 	boolean freeze;
 	
-	public VisitorInfectadoCuarentena(boolean v) {
+	// No usamos la entidad en este visitor
+	public VisitorInfectadoCuarentena(Entidad e, boolean v) {
+		super(e);
 		freeze = v;
 	}
 

@@ -12,6 +12,15 @@ public abstract class Infectado extends Humano {
 		golpeo = false;
 	}
 	
+	@Override
+	public void actualizar() {
+		super.actualizar();
+		
+		if (getCV() <= 0) {
+			eliminar();
+		}
+	}
+	
 	public abstract void atacarMelee();
 
 	public void setGolpeo(boolean v) {

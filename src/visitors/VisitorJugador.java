@@ -2,6 +2,10 @@ package visitors;
 import entidades.*;
 
 public class VisitorJugador extends Visitor {
+	public VisitorJugador(Entidad e) {
+		super(e);
+	}
+
 	@Override
 	public void visitInfectadoA(InfectadoAlpha a) {
 		a.atacarMelee();
