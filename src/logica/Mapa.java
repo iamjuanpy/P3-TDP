@@ -16,17 +16,16 @@ public class Mapa extends JPanel {
 	private Jugador player;
 	private JLabel background;
 	
-	public Mapa(int limiteX, int limiteY) {
+	public Mapa(int x, int y, int limiteX, int limiteY) {
 		addKeyListener(new InputTeclado());
 		setFocusable(true);
 		setLayout(null);
 		
 		setBounds(0, 0, limiteX, limiteY);
 		
-		// Obtener el background de cada Nivel?
 		background = new JLabel();
-		background.setBounds(0, 0, limiteX, limiteY);
-		background.setIcon(new ImageIcon("img/bg2.png"));
+		background.setBounds(x, y, limiteX, limiteY);
+		background.setIcon(new ImageIcon("img/bg2.png")); // eliminar despues de agregar niveles
 		add(background);
 	}
 	
@@ -55,6 +54,10 @@ public class Mapa extends JPanel {
 	public void agregarGrafico(Grafico g) {
 		add(g);
 		setComponentZOrder(g, 0);
+	}
+	
+	public void setBackground(ImageIcon fondo) {
+		background.setIcon(fondo);
 	}
 
 }

@@ -2,7 +2,6 @@ package logica;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JPanel;
 import javax.swing.Timer;
 import entidades.Entidad;
 import entidades.InfectadoAlpha;
@@ -13,10 +12,9 @@ import entidades.PowerUp;
 import java.util.ArrayList;
 import java.util.List;
 
-import premios.*;
+import premios.*; // import para testEntidades()
 
-public class Juego extends JPanel {
-	private static final long serialVersionUID = 1L;
+public class Juego {
 	
 	private List<Entidad> entidades;
 	private List<Entidad> entidadesAñadir;
@@ -35,16 +33,14 @@ public class Juego extends JPanel {
 	private Mapa mapa;
 	private int limiteX, limiteY;
 	
-	public void setMapa(Mapa m) {
-		mapa = m;
-	}
-	
 	public Juego(int FPS, int limiteX, int limiteY) {
 		entidades = new ArrayList<Entidad>();
 		entidadesAñadir = new ArrayList<Entidad>();
 		
 		this.limiteX = limiteX;
 		this.limiteY = limiteY;
+		
+		// nivelActual = new Nivel(this, 2, 3, 1);
 		
 		ActionListener eventoTimer = new ActionListener() {
 			@Override
@@ -53,8 +49,11 @@ public class Juego extends JPanel {
 				resolverColisiones();
 				eliminarEntidadesMuertas();
 				//if (nivelActual.getTanda() != 0)
-					nivelActual.spawnEnemigos();
+					// nivelActual.spawnEnemigos();
 				//else nivelActual = listaNiveles.next() ?
+				
+				// ejecutar despues de cada transicion de nivel?
+				// mapa.setBackground(nivelActual.getBackground());
 					
 				//System.out.println("Carga Viral: "+player.getCV()); // DEBUG
 				//System.out.println("Cantidad de entidades: "+entidades.size()); // DEBUG
@@ -94,7 +93,7 @@ public class Juego extends JPanel {
 	
 	public void crearJugador() {
 		if (player == null) {
-			player = new Jugador(this, limiteX/2, limiteY - 80, 6, 0);
+			player = new Jugador(this, limiteX/2, limiteY - 50, 6, 0);
 			agregarEntidad(player);
 		}
 	}
@@ -144,6 +143,10 @@ public class Juego extends JPanel {
 	
 	public Mapa getMapa() {
 		return mapa;
+	}
+	
+	public void setMapa(Mapa m) {
+		mapa = m;
 	}
 	
 	public void spawneoInfectado() {

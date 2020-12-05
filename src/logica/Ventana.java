@@ -1,18 +1,13 @@
 package logica;
 
 import java.awt.EventQueue;
-
-import javax.swing.ImageIcon;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 //import java.io.File;
 
 public class Ventana extends JFrame {
 	private static final long serialVersionUID = -3673320636191996954L;
 	
-	private JPanel hud;
+	private HUD display;
 	private Mapa mapa;
 
 	
@@ -34,12 +29,11 @@ public class Ventana extends JFrame {
 	
 	public Ventana() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setLayout(null);
-		
-		setBounds(50, 50, 600, 800);
+		setBounds(50, 50, 600, 900);
 		setTitle("Proyecto 3");
 		setResizable(false);
-	
+		setLayout(null);
+		
 		inicializarComponentes();
 	}
 	
@@ -51,12 +45,17 @@ public class Ventana extends JFrame {
 		// Thread t = new Thread(new MusicaRunnable(midi, true));
 		// t.run();
 		
-		Juego juego = new Juego(60 /* FPS */, this.getWidth(), this.getHeight());
-		mapa = new Mapa(this.getWidth(), this.getHeight());
-		//hud = new JPanel();
-		//hud.setBounds(0,0,this.getWidth(), 100);
+		int alturaHUD = 100;
+		int limiteX = getWidth();
+		int limiteY = getHeight() - alturaHUD;				
 		
-		setContentPane(mapa);
+		Juego juego = new Juego(60 /* FPS */, limiteX, limiteY);
+		mapa = new Mapa(0, 0, limiteX, limiteY);		
+		
+		display = new HUD(0, limiteY, limiteX, limiteY + alturaHUD);		
+		
+		add(mapa);
+		add(display);
 		
 		juego.setMapa(mapa);
 		juego.crearJugador();

@@ -5,7 +5,6 @@ import java.util.Random;
 
 import javax.swing.ImageIcon;
 
-import entidades.Entidad;
 import entidades.Infectado;
 import entidades.InfectadoAlpha;
 import entidades.InfectadoBeta;
@@ -44,8 +43,8 @@ public abstract class Nivel {
 	// Auxiliar para spawnEnemigos
 	private int auxAlfa;
 	private int auxBeta;
-	private int posX = 0;
-	private int posY = juego.getHeight();
+	private int posX;
+	private int posY;
 	
 	public Nivel(Juego j, int cantA, int cantB, float mp) {
 		juego = j;
@@ -102,5 +101,9 @@ public abstract class Nivel {
 	
 	public boolean finNivel() {
 		return (tandaActual == 0);
+	}
+	
+	public ImageIcon getBackground() {
+		return background;
 	}
 }
