@@ -22,11 +22,14 @@ public class Juego extends JPanel {
 	private List<Entidad> entidadesAñadir;
 
 	private Jugador player;
+	private int infectadosVivos;
 	
+	//HUD ?
 	private int vida;
 	private String armaSeleccionada;
 	private boolean escudo;
 	private boolean cuarentena;
+	// 
 	
 	private Nivel nivelActual;
 	private Mapa mapa;
@@ -49,6 +52,10 @@ public class Juego extends JPanel {
 				actualizarEntidades();
 				resolverColisiones();
 				eliminarEntidadesMuertas();
+				//if (nivelActual.getTanda() != 0)
+					nivelActual.spawnEnemigos();
+				//else nivelActual = listaNiveles.next() ?
+					
 				//System.out.println("Carga Viral: "+player.getCV()); // DEBUG
 				//System.out.println("Cantidad de entidades: "+entidades.size()); // DEBUG
 			}
@@ -137,5 +144,17 @@ public class Juego extends JPanel {
 	
 	public Mapa getMapa() {
 		return mapa;
+	}
+	
+	public void spawneoInfectado() {
+		infectadosVivos++;
+	}
+	
+	public void murioInfectado() {
+		infectadosVivos--;
+	}
+	
+	public boolean hayInfectadosVivos() {
+		return (infectadosVivos != 0);
 	}
 }

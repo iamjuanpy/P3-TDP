@@ -18,6 +18,7 @@ public abstract class Infectado extends Humano {
 		
 		if (getCV() <= 0) {
 			eliminar();
+			juego.murioInfectado();
 		}
 	}
 	
