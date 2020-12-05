@@ -22,6 +22,12 @@ public class Juego extends JPanel {
 	private List<Entidad> entidadesAñadir;
 
 	private Jugador player;
+	
+	private int vida;
+	private String armaSeleccionada;
+	private boolean escudo;
+	private boolean cuarentena;
+	
 	private Nivel nivelActual;
 	private Mapa mapa;
 	private int limiteX, limiteY;
@@ -43,7 +49,7 @@ public class Juego extends JPanel {
 				actualizarEntidades();
 				resolverColisiones();
 				eliminarEntidadesMuertas();
-				System.out.println("Carga Viral: "+player.getCV()); // DEBUG
+				//System.out.println("Carga Viral: "+player.getCV()); // DEBUG
 				//System.out.println("Cantidad de entidades: "+entidades.size()); // DEBUG
 			}
 		};

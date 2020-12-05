@@ -1,6 +1,7 @@
 package visitors;
 
 import entidades.Entidad;
+import entidades.Grafico;
 import entidades.InfectadoAlpha;
 import entidades.InfectadoBeta;
 import estrategias.EstrategiaMovInfectados;
@@ -18,15 +19,33 @@ public class VisitorInfectadoCuarentena extends Visitor {
 
 	@Override
 	public void visitInfectadoA(InfectadoAlpha a) {
-		if (freeze)
+		
+		Grafico g = a.getEntidadGrafica();
+		String str = g.toString();
+		
+		if (freeze) {
 			a.setEstrategiaMov(new EstrategiaMovNulo(a));
-		else a.setEstrategiaMov(new EstrategiaMovInfectados(a));
+			g.setImagen(str+"S");
+		}
+		else {
+			a.setEstrategiaMov(new EstrategiaMovInfectados(a));
+			g.setImagen(str.replace("S",""));
+		}
 	}
 
 	@Override
 	public void visitInfectadoB(InfectadoBeta b) {
-		if (freeze)
+		
+		Grafico g = b.getEntidadGrafica();
+		String str = g.toString();
+		
+		if (freeze) {
 			b.setEstrategiaMov(new EstrategiaMovNulo(b));
-		else b.setEstrategiaMov(new EstrategiaMovInfectados(b));
+			g.setImagen(str+"S");
+		}
+		else { 
+			b.setEstrategiaMov(new EstrategiaMovInfectados(b));
+			g.setImagen(str.replace("S",""));
+		}
 	}
 }

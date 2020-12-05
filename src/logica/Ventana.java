@@ -2,13 +2,19 @@ package logica;
 
 import java.awt.EventQueue;
 
+import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 //import java.io.File;
 
 public class Ventana extends JFrame {
 	private static final long serialVersionUID = -3673320636191996954L;
 	
+	private JPanel hud;
 	private Mapa mapa;
+
 	
 	public static void main(String[] args) {
 		
@@ -47,10 +53,12 @@ public class Ventana extends JFrame {
 		
 		Juego juego = new Juego(60 /* FPS */, this.getWidth(), this.getHeight());
 		mapa = new Mapa(this.getWidth(), this.getHeight());
-		setContentPane(mapa);
-
-		juego.setMapa(mapa);
+		//hud = new JPanel();
+		//hud.setBounds(0,0,this.getWidth(), 100);
 		
+		setContentPane(mapa);
+		
+		juego.setMapa(mapa);
 		juego.crearJugador();
 		mapa.setPlayer(juego.getPlayer());	
 		

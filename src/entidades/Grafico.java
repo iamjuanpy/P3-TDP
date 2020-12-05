@@ -13,10 +13,12 @@ public class Grafico extends JLabel {
 	
 	private ImageIcon imagen;
 	private int x, y;	
+	private String toString;
 	
 	public Grafico(String tipo, int x, int y) {
 		if (mapeoSprites == null) {
 			mapeoSprites = new HashMap<String, ImageIcon>();
+			// Jugador
 			mapeoSprites.put("JugadorDefault", new ImageIcon("img/jugador.PNG"));
 			mapeoSprites.put("JugadorDefaultDisp", new ImageIcon("img/jugadorDisp.GIF"));
 			mapeoSprites.put("JugadorDefaultIzq", new ImageIcon("img/jugadorIzq.GIF"));
@@ -29,20 +31,27 @@ public class Grafico extends JLabel {
 			mapeoSprites.put("JugadorRapidaDisp", new ImageIcon("img/jugadorRapidaDisp.GIF"));
 			mapeoSprites.put("JugadorRapidaIzq", new ImageIcon("img/jugadorRapidaIzq.GIF"));
 			mapeoSprites.put("JugadorRapidaDer", new ImageIcon("img/jugadorRapidaDer.GIF"));
+			mapeoSprites.put("Muerte", new ImageIcon("img/muerte.png"));
+			// Infectados
 			mapeoSprites.put("InfectadoAlfa", new ImageIcon("img/infectadoA.GIF"));
 			mapeoSprites.put("InfectadoAlfa2", new ImageIcon("img/infectadoA2.GIF"));
 			mapeoSprites.put("InfectadoBeta", new ImageIcon("img/infectadoB.GIF"));
 			mapeoSprites.put("InfectadoBeta2", new ImageIcon("img/infectadoB.GIF"));
+			mapeoSprites.put("InfectadoAlfaS", new ImageIcon("img/infectadoAStill.png"));
+			mapeoSprites.put("InfectadoAlfa2S", new ImageIcon("img/infectadoA2Still.png"));
+			mapeoSprites.put("InfectadoBetaS", new ImageIcon("img/infectadoBStill.png"));
+			mapeoSprites.put("InfectadoBeta2S", new ImageIcon("img/infectadoB2Still.png"));
+			// Misc
 			mapeoSprites.put("Bala", new ImageIcon("img/bala.png"));
 			mapeoSprites.put("Infeccion", new ImageIcon("img/infeccion.png"));
 			mapeoSprites.put("PowerUp", new ImageIcon("img/powerup.gif"));
 			mapeoSprites.put("DeleteInfeccion", new ImageIcon("img/hitInfeccion.gif"));
 			mapeoSprites.put("DeleteBala", new ImageIcon("img/healing.gif"));
 			mapeoSprites.put("Melee", new ImageIcon("img/hit.gif"));
-			mapeoSprites.put("Muerte", new ImageIcon("img/muerte.png"));
 		}
 		
 		imagen = mapeoSprites.get(tipo);
+		toString = tipo;
 		setIcon(imagen);
 		
 		// Compensar por las dimensiones de la imagen
@@ -62,8 +71,11 @@ public class Grafico extends JLabel {
 	}
 	
 	public void setImagen(String tipo) {
-		imagen = mapeoSprites.get(tipo);
-		setIcon(imagen);
+		if (tipo != toString) { // Evita que se vea feo al moverse el jugador
+			imagen = mapeoSprites.get(tipo);
+			toString = tipo;
+			setIcon(imagen);
+		}
 	}
 	
 	public int getX() {
@@ -92,4 +104,8 @@ public class Grafico extends JLabel {
 		return imagen.getIconWidth();
 	}
 
+	public String toString() {
+		return toString;
+	}
+	
 }

@@ -18,7 +18,7 @@ public class ArmaTemporal extends EfectoTemporal {
 		
 		// no es final
 		if (jugador.getArmaSeleccionada() == "Default") {
-			if (new Random().nextInt(1) == 1)
+			if (new Random().nextInt(2) == 2)
 				arma = new ArmaSuper(jugador.getJuego());
 			else arma = new ArmaRapida(jugador.getJuego());
 		}
