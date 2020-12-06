@@ -1,6 +1,9 @@
 package logica;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 //import java.io.File;
 
@@ -49,10 +52,9 @@ public class Ventana extends JFrame {
 		int limiteX = getWidth();
 		int limiteY = getHeight() - alturaHUD;				
 		
-		Juego juego = new Juego(60 /* FPS */, limiteX, limiteY);
-		mapa = new Mapa(0, 0, limiteX, limiteY);		
-		
-		display = new HUD(0, limiteY, limiteX, limiteY + alturaHUD);		
+		display = new HUD(0, limiteY, limiteX, limiteY + alturaHUD);
+		Juego juego = new Juego(60 /* FPS */, limiteX, limiteY,display);
+		mapa = new Mapa(0, 0, limiteX, limiteY);			
 		
 		add(mapa);
 		add(display);

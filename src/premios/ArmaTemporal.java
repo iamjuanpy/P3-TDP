@@ -10,7 +10,7 @@ import entidades.Jugador;
 
 public class ArmaTemporal extends EfectoTemporal {
 
-	private static int duracionArma = 250;
+	private static int duracionArma = 750;
 	private Arma arma;
 	
 	public ArmaTemporal(Jugador j) {
@@ -19,14 +19,9 @@ public class ArmaTemporal extends EfectoTemporal {
 		
 		// no es final
 		if (jugador.getArmaSeleccionada() == "Default") {
-			if (new Random().nextInt(2) == 2)
+			if (new Random().nextInt(10) < 5)
 				arma = new ArmaSuper(jugador.getJuego());
 			else arma = new ArmaRapida(jugador.getJuego());
-		}
-		else {
-			if (jugador.getArmaSeleccionada() == "Super")
-				arma = new ArmaRapida(jugador.getJuego());
-			else arma = new ArmaSuper(jugador.getJuego());
 		}
 		//
 	}

@@ -22,18 +22,13 @@ public class Juego {
 	private Jugador player;
 	private int infectadosVivos;
 	
-	//HUD ?
-	private int vida;
-	private String armaSeleccionada;
-	private boolean escudo;
-	private boolean cuarentena;
-	// 
+	HUD hud;
 	
 	private Nivel nivelActual;
 	private Mapa mapa;
 	private int limiteX, limiteY;
 	
-	public Juego(int FPS, int limiteX, int limiteY) {
+	public Juego(int FPS, int limiteX, int limiteY, HUD hud) {
 		entidades = new ArrayList<Entidad>();
 		entidadesAñadir = new ArrayList<Entidad>();
 		
@@ -41,6 +36,7 @@ public class Juego {
 		this.limiteY = limiteY;
 		
 		// nivelActual = new Nivel(this, 2, 3, 1);
+		this.hud = hud;
 		
 		ActionListener eventoTimer = new ActionListener() {
 			@Override
@@ -48,7 +44,9 @@ public class Juego {
 				actualizarEntidades();
 				resolverColisiones();
 				eliminarEntidadesMuertas();
-				//if (nivelActual.getTanda() != 0)
+				hud.actualizarHUD(player.getCV(), 1 /*nivelActual.getNumero()*/, infectadosVivos,player.getEscudo(),player.getArmaSeleccionada());
+				
+				//if (!(nivelActual.finNivel()))
 					// nivelActual.spawnEnemigos();
 				//else nivelActual = listaNiveles.next() ?
 				
@@ -79,6 +77,8 @@ public class Juego {
 	public void testEntidades() {
 		Entidad ia = new InfectadoAlpha(this,limiteX/2 + 70, 0 + 175,0,2);
 		Entidad ib = new InfectadoBeta(this,limiteX/2 - 70, 0 + 75,0,2);
+		spawneoInfectado();
+		spawneoInfectado();
 		
 		agregarEntidad(ia);
 		agregarEntidad(ib);
@@ -89,6 +89,8 @@ public class Juego {
 		agregarEntidad(p2);
 		Entidad p3 = new PowerUp(new Cuarentena(player),this,limiteX/2 - 90,-150,1,2);
 		agregarEntidad(p3);
+		Entidad p4 = new PowerUp(new Escudo(player),this,limiteX/2,-70,1,2);
+		agregarEntidad(p4);
 	}
 	
 	public void crearJugador() {

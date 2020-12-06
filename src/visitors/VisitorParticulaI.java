@@ -10,7 +10,9 @@ public class VisitorParticulaI extends Visitor {
 	@Override
 	public void visitJugador(Jugador j) {
 		int daño = ((ParticulaInfeccion) e).getDaño();
-		j.setCV(j.getCV() + daño);
+		if (!j.getEscudo())
+			j.setCV(j.getCV() + daño);
+		else j.setEscudo(false);
 	}
 
 }

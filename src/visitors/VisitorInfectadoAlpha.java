@@ -11,8 +11,10 @@ public class VisitorInfectadoAlpha extends Visitor {
 	public void visitJugador(Jugador j) {
 		Infectado aux = (Infectado) e;
 		if (!aux.getGolpeo()) {
-			j.setCV(j.getCV() + aux.getDaño());
-			aux.atacarMelee();
+			if (!j.getEscudo())
+				j.setCV(j.getCV() + aux.getDaño());
+			else j.setEscudo(false);
+		aux.atacarMelee();
 		}
 	}
 
