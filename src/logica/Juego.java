@@ -18,7 +18,7 @@ import premios.*; // import para testEntidades()
 public class Juego {
 	
 	private List<Entidad> entidades;
-	private List<Entidad> entidadesAñadir;
+	private List<Entidad> entidadesAÃ±adir;
 
 	private Jugador player;
 	private int infectadosVivos;
@@ -30,9 +30,14 @@ public class Juego {
 	private Mapa mapa;
 	private int limiteX, limiteY;
 	
+	private ActionListener eventoTimer;
+	private ActionListener eventoPausa;
+	private float fpsEnMS;
+	private Timer t;
+	
 	public Juego(int FPS, int limiteX, int limiteY, HUD hud) {
 		entidades = new ArrayList<Entidad>();
-		entidadesAñadir = new ArrayList<Entidad>();
+		entidadesAÃ±adir = new ArrayList<Entidad>();
 		
 		this.limiteX = limiteX;
 		this.limiteY = limiteY;
@@ -40,7 +45,7 @@ public class Juego {
 		// nivelActual = new Nivel(this, 2, 3, 1);
 		this.hud = hud;
 		
-		ActionListener eventoTimer = new ActionListener() {
+		eventoTimer = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				actualizarEntidades();
@@ -60,6 +65,13 @@ public class Juego {
 			}
 		};
 		
+		eventoPausa = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		};
+		
 		/*
 		 * Si queremos que el juego ande a x FPS, significa que en cada segundo van
 		 * a haber x actualizaciones. Entonces por la regla de 3 hay 1/x segundos por frame
@@ -69,12 +81,11 @@ public class Juego {
 		 * 60 fps -- 1 seg
 		 *  1 fps -- ? seg <- 1/60
 		 * Hay un poco de perdida de precision, pero se tiene que castear a int porque eso requiere Timer.
-		 * El error es una cantidad demasiado pequeña para importar.
+		 * El error es una cantidad demasiado pequeï¿½a para importar.
 		 */
-		float fpsEnMS = ( 1/ (float) FPS ) * 1000;
-		Timer t = new Timer((int)fpsEnMS, eventoTimer);
+		fpsEnMS = ( 1/ (float) FPS ) * 1000;
+		t = new Timer((int)fpsEnMS, eventoTimer);
 		t.start();
-		
 
 	}
 	
@@ -98,12 +109,12 @@ public class Juego {
 	}
 	
 	private void actualizarEntidades() {
-		// Añadido para evitar ConcurrentException al agregar Entidad en actualizar().
-		for (Entidad e : entidadesAñadir) {
+		// Aï¿½adido para evitar ConcurrentException al agregar Entidad en actualizar().
+		for (Entidad e : entidadesAÃ±adir) {
 			entidades.add(e);
 		}
 		
-		entidadesAñadir.clear();
+		entidadesAÃ±adir.clear();
 		
 		for (Entidad e : entidades) {
 			e.actualizar();
@@ -147,7 +158,7 @@ public class Juego {
 	}
 	
 	public void agregarEntidad(Entidad e) {
-		entidadesAñadir.add(e);
+		entidadesAÃ±adir.add(e);
 		mapa.agregarGrafico(e.getEntidadGrafica());
 	}
 	
@@ -173,5 +184,17 @@ public class Juego {
 	
 	public boolean hayInfectadosVivos() {
 		return (infectadosVivos != 0);
+	}
+	
+	public void pausa() {
+		t.stop();
+		t = new Timer((int)fpsEnMS, eventoPausa);
+		t.start();
+	}
+	
+	public void reanudar() {
+		t.stop();
+		t = new Timer((int)fpsEnMS, eventoTimer);
+		t.start();
 	}
 }

@@ -18,6 +18,7 @@ public class Ventana extends JFrame {
 	private HUD display;
 	private Menu menu;
 	private Ayuda ayuda;
+	private Pausa pausa;
 
 	
 	public static void main(String[] args) {
@@ -62,6 +63,7 @@ public class Ventana extends JFrame {
 		menu = new Menu(0,0,limiteX,limiteY, this);
 		ayuda = new Ayuda(0,0,limiteX, limiteY,this);
 		display = new HUD(0, limiteY, limiteX, limiteY + alturaHUD);
+		pausa = new Pausa(this);
 
 		add(menu);
 		add(ayuda);
@@ -100,6 +102,15 @@ public class Ventana extends JFrame {
 		menu.setVisible(true);
 		ayuda.setVisible(false);
 	}
+	
+	public void pausar() {
+        pausa.setVisible(true);
+    }
+
+    public void reanudar() {
+        pausa.setVisible(false);
+        juego.reanudar();
+    }
 
 	
 

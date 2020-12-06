@@ -55,6 +55,10 @@ public class EstrategiaMovJugador extends EstrategiaMovimiento {
 			direccion = velocidad;
 			this.e.getEntidadGrafica().setImagen("Jugador"+aux+"Der");
 		}
+		
+		if (key == KeyEvent.VK_ESCAPE) {
+            juego.pausa();
+        }
 	}
 	
 	public void keyReleased(KeyEvent e) {
