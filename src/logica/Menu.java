@@ -10,12 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Menu extends JPanel{
+	private static final long serialVersionUID = -4569548655143314581L;
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	
 	private Ventana v;
 	
 	private JLabel background;
@@ -82,6 +78,7 @@ public class Menu extends JPanel{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			v.dispose();
 			System.exit(1);
 		}
 	}

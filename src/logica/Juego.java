@@ -7,6 +7,7 @@ import entidades.Entidad;
 import entidades.InfectadoAlpha;
 import entidades.InfectadoBeta;
 import entidades.Jugador;
+import entidades.PowerUpFactory;
 import entidades.PowerUp;
 
 import java.util.ArrayList;
@@ -22,7 +23,8 @@ public class Juego {
 	private Jugador player;
 	private int infectadosVivos;
 	
-	HUD hud;
+	private HUD hud;
+	private PowerUpFactory fabrica;
 	
 	private Nivel nivelActual;
 	private Mapa mapa;
@@ -95,13 +97,6 @@ public class Juego {
 		agregarEntidad(p4);
 	}
 	
-	public void crearJugador() {
-		if (player == null) {
-			player = new Jugador(this, limiteX/2, limiteY - 50, 6, 0);
-			agregarEntidad(player);
-		}
-	}
-	
 	private void actualizarEntidades() {
 		// Añadido para evitar ConcurrentException al agregar Entidad en actualizar().
 		for (Entidad e : entidadesAñadir) {
@@ -130,6 +125,21 @@ public class Juego {
 			}
 		}
 	        
+	}
+	
+	public void crearJugador() {
+		if (player == null) {
+			player = new Jugador(this, limiteX/2, limiteY - 50, 6, 0);
+			agregarEntidad(player);
+		}
+	}
+	
+	public PowerUpFactory getPowerUpFactory() {
+		if (fabrica == null) {
+			fabrica = new PowerUpFactory(this, player);
+		}
+		
+		return fabrica;
 	}
 	
 	public List<Entidad> getEntidades(){

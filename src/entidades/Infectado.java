@@ -1,5 +1,6 @@
 package entidades;
 import armas.Arma;
+import estrategias.EstrategiaDeleteInfectado;
 import logica.Juego;
 
 public abstract class Infectado extends Humano {
@@ -10,6 +11,7 @@ public abstract class Infectado extends Humano {
 	public Infectado(Arma a,Juego juego, int x, int y, int vx, int vy) {
 		super(a, juego, x, y, vx, vy);
 		golpeo = false;
+		delStrat = new EstrategiaDeleteInfectado(juego, this);
 	}
 	
 	@Override
