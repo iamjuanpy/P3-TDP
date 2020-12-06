@@ -14,6 +14,7 @@ public class Jugador extends Humano {
 	
 	protected boolean escudo;
 	protected EfectoTemporal ef;
+	protected EfectoTemporal ef2;
 	
 	public Jugador(Juego juego, int x, int y, int vx, int vy) {
 		super(new ArmaDefault(juego), juego, x, y, vx ,vy);
@@ -38,8 +39,12 @@ public class Jugador extends Humano {
 	public void actualizar() {
 
 		super.actualizar();
+		
 		if (ef != null) {
 			ef.tick();
+		}
+		if (ef2 != null) {
+			ef2.tick();
 		}
 		
 		if (getCV() >= 100) {
@@ -71,7 +76,17 @@ public class Jugador extends Humano {
 
 
 	public void setEfectoTemporal(EfectoTemporal ef) {
-		this.ef = ef;
+		if (ef.toString() == "Cuarentena")
+			this.ef = ef;
+		else this.ef2 = ef; 
+		// System.out.println("Agregado :"+ef.toString()); // DEBUG
+	}
+
+	public void deleteEfectoTemporal(EfectoTemporal ef) {
+		if (ef.toString() == "Cuarentena")
+			this.ef = null;
+		else this.ef2 = null; 
+		// System.out.println("Eliminado :"+ef.toString()); // DEBUG
 	}
 	
 }

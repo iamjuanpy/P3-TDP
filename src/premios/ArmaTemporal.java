@@ -10,11 +10,12 @@ import entidades.Jugador;
 
 public class ArmaTemporal extends EfectoTemporal {
 
-	private static int duracionArma = 1000;
+	private static int duracionArma = 250;
 	private Arma arma;
 	
 	public ArmaTemporal(Jugador j) {
 		super(j,duracionArma);
+		s = "ArmaTemporal";
 		
 		// no es final
 		if (jugador.getArmaSeleccionada() == "Default") {

@@ -13,6 +13,7 @@ public class Cuarentena extends EfectoTemporal {
 	
 	public Cuarentena(Jugador j) {
 		super(j,duracionCuarentena);
+		s = "Cuarentena";
 	}
 	
 	
