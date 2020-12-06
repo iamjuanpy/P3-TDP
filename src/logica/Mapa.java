@@ -17,6 +17,7 @@ public class Mapa extends JPanel {
 	private JLabel background;
 	
 	public Mapa(int x, int y, int limiteX, int limiteY) {
+		
 		addKeyListener(new InputTeclado());
 		setFocusable(true);
 		setLayout(null);
@@ -35,11 +36,13 @@ public class Mapa extends JPanel {
 		@Override
 		public void keyPressed(KeyEvent e) {
 			player.keyPressed(e);
+			System.out.println(e.getKeyChar());
 		}
 		
 		@Override
 		public void keyReleased(KeyEvent e) {
 			player.keyReleased(e);
+			System.out.println(e.getKeyChar());
 		}
 	}
 	

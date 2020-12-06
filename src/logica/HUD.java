@@ -23,9 +23,7 @@ public class HUD extends JPanel {
 
 	
 	public HUD(int x, int y, int limiteX, int altura) {
-		layout = new FlowLayout(FlowLayout.CENTER, 50, 10);
-		layout.setHgap(10);
-		layout.setVgap(22);
+		layout = new FlowLayout(FlowLayout.CENTER, 10, 22);
 		
 		setBounds(x, y, limiteX, altura);
 		setBackground(new Color(102, 153, 0));
@@ -61,7 +59,7 @@ public class HUD extends JPanel {
 		add(arma);
 		add(escudo);
 		
-		//actualizarHUD(8, 1, 2, true, "Default"); // Test para ver como se ve el HUD
+		actualizarHUD(75, 100, 6, true, "Default"); // Hud inicial
 	}
 	
 	public void actualizarHUD(int cargaViral, int nivel, int infectados, boolean tieneEscudo, String armaSeleccionada) {

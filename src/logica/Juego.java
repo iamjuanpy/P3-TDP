@@ -72,6 +72,8 @@ public class Juego {
 		float fpsEnMS = ( 1/ (float) FPS ) * 1000;
 		Timer t = new Timer((int)fpsEnMS, eventoTimer);
 		t.start();
+		
+
 	}
 	
 	public void testEntidades() {
