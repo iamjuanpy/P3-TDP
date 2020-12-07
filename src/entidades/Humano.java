@@ -29,6 +29,7 @@ public abstract class Humano extends Entidad {
 	
 	public void setArma(Arma a) {
 		arma = a;
+		arma.setOwner(this);
 	}
 	
 	public void disparar() {

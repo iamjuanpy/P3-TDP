@@ -3,6 +3,8 @@ package logica;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -21,30 +23,30 @@ public class Pausa extends JFrame {
 	
 	public Pausa(Ventana v) {
 		
-		
-		setBounds(100, 100, 450, 300);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setUndecorated(true);
+		setBounds(0, 0, 500, 300);
+		setResizable(false);
+		setLayout(null);
+		setLocationRelativeTo(null);
 		
 		this.v = v;
 		
-		setLayout(null);
-		
 		background = new JLabel();
 		background.setIcon(new ImageIcon("img/pausa.png")); 
+		background.setBounds(0,0,500,300);
 		add(background);
 		
-		
 		Continuar = new JButton("Continuar");
-		Continuar.setBounds(209,517,165,35);
+		Continuar.setBounds(128,193,116,29);
 		Continuar.addActionListener(new OyenteC());
 		
 		Salir = new JButton("Salir");
-		Salir.setBounds(209,572,165,35);
+		Salir.setBounds(256,193,116,29);
 		Salir.addActionListener(new OyenteS());
-		
 		
 		add(Continuar);
 		add(Salir);
+		
 		setVisible(false);
 	}
 
@@ -52,11 +54,9 @@ public class Pausa extends JFrame {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			
 			Continuar.setFocusable(false);
 			Salir.setFocusable(false);		
-			//v.cerrarPausa();
-			
+			v.reanudar();	
 		}
 		
 	}
@@ -65,12 +65,9 @@ public class Pausa extends JFrame {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-
 			System.exit(1);
-			
 		}
 		
-	
 	}
 
 }

@@ -71,13 +71,17 @@ public class Ventana extends JFrame {
 
 	}
 	
+	public HUD getHud() {
+		return display;
+	}
+	
 	public void nuevoJuego() {
 		
 		int alturaHUD = 100;
 		int limiteX = getWidth();
 		int limiteY = getHeight() - alturaHUD;	
 		
-		juego = new Juego(60 , limiteX, limiteY,display);
+		juego = new Juego(60 , limiteX, limiteY,this);
 		mapa = new Mapa(0, 0, limiteX, limiteY);
 
 		juego.setMapa(mapa);
@@ -105,10 +109,15 @@ public class Ventana extends JFrame {
 	
 	public void pausar() {
         pausa.setVisible(true);
+        this.setEnabled(false);
     }
 
     public void reanudar() {
         pausa.setVisible(false);
+        
+        this.setEnabled(true);
+        this.setVisible(true);
+        
         juego.reanudar();
     }
 

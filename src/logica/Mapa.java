@@ -36,13 +36,11 @@ public class Mapa extends JPanel {
 		@Override
 		public void keyPressed(KeyEvent e) {
 			player.keyPressed(e);
-			System.out.println(e.getKeyChar());
 		}
 		
 		@Override
 		public void keyReleased(KeyEvent e) {
 			player.keyReleased(e);
-			System.out.println(e.getKeyChar());
 		}
 	}
 	

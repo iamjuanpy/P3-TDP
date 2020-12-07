@@ -22,7 +22,7 @@ public class EstrategiaDeleteInfectado extends EstrategiaDelete {
 		
 		// Con una posibilidad uniforme del 20%
 		if (rnd.nextFloat() <= 0.2f) {
-			fabricaPowerUps.crearPowerUpRandom(x, y);
+			fabricaPowerUps.crearPowerUpRandom(x+(e.getEntidadGrafica().getAnchoImg()/2), y+(e.getEntidadGrafica().getAltoImg()/2));
 		}		
 		
 		e.setEliminado(true);

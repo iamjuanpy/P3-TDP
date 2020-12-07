@@ -89,4 +89,12 @@ public class Jugador extends Humano {
 		// System.out.println("Eliminado :"+ef.toString()); // DEBUG
 	}
 	
+	public boolean tieneEfectoTemporal() {
+		return (ef != null);
+	}
+	
+	public boolean tieneEfectoTemporal2() {
+		return (ef != null);
+	}
+	
 }

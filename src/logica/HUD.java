@@ -19,6 +19,7 @@ public class HUD extends JPanel {
 	private JLabel infectadosVivos;
 	private JLabel escudo;
 	private JLabel arma;
+	private JLabel cuarentena;
 	private FlowLayout layout;
 
 	
@@ -41,6 +42,7 @@ public class HUD extends JPanel {
 		infectadosVivos = new JLabel();
 		escudo = new JLabel();
 		arma = new JLabel();
+		cuarentena = new JLabel();
 		for (int i=0; i<= 5; i++) {
 			cargaViral[i] = new JLabel();
 			add(cargaViral[i]);
@@ -58,18 +60,20 @@ public class HUD extends JPanel {
 		add(infectadosVivos);
 		add(arma);
 		add(escudo);
+		add(cuarentena);
 		
-		actualizarHUD(75, 100, 6, true, "Default"); // Hud inicial
+		actualizarHUD(75, 5, 6, true, "Default",false); // Hud inicial
 	}
 	
-	public void actualizarHUD(int cargaViral, int nivel, int infectados, boolean tieneEscudo, String armaSeleccionada) {
+	public void actualizarHUD(int cargaViral, int nivel, int infectados, boolean tieneEscudo, String armaSeleccionada, boolean cuarentena) {
 		actualizarCargaViral(cargaViral);
 		actualizarEscudo(tieneEscudo);
 		this.nivel.setText("Nivel: " + Integer.toString(nivel));
 		this.infectadosVivos.setText("Infectados: " + Integer.toString(infectados));
 		actualizarArma(armaSeleccionada);
+		actualizarCuarentena(cuarentena);
 	}
-	
+
 	private void actualizarCargaViral(int cv) {
 		
 		ImageIcon imgFull = new ImageIcon("img/full.png"); 
@@ -120,5 +124,14 @@ public class HUD extends JPanel {
 		
 		if (armaS == "Super")
 			arma.setIcon(imgSuper);
+	}
+	
+	private void actualizarCuarentena(boolean cuarentena2) {
+		ImageIcon imgCuaren = new ImageIcon("img/cuarentena.png");
+		ImageIcon imgNormal = new ImageIcon("img/normal.png");
+		
+		if (cuarentena2)
+			cuarentena.setIcon(imgCuaren);
+		else cuarentena.setIcon(imgNormal);
 	}
 }

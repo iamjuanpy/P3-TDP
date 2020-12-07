@@ -18,11 +18,12 @@ import premios.*; // import para testEntidades()
 public class Juego {
 	
 	private List<Entidad> entidades;
-	private List<Entidad> entidadesAÃ±adir;
+	private List<Entidad> entidadesAñadir;
 
 	private Jugador player;
 	private int infectadosVivos;
 	
+	private Ventana v;
 	private HUD hud;
 	private PowerUpFactory fabrica;
 	
@@ -35,15 +36,17 @@ public class Juego {
 	private float fpsEnMS;
 	private Timer t;
 	
-	public Juego(int FPS, int limiteX, int limiteY, HUD hud) {
+	public Juego(int FPS, int limiteX, int limiteY, Ventana v) {
 		entidades = new ArrayList<Entidad>();
-		entidadesAÃ±adir = new ArrayList<Entidad>();
+		entidadesAñadir = new ArrayList<Entidad>();
 		
 		this.limiteX = limiteX;
 		this.limiteY = limiteY;
 		
-		// nivelActual = new Nivel(this, 2, 3, 1);
-		this.hud = hud;
+		this.v = v;
+		this.hud = v.getHud();
+		
+		//nivelActual = new Nivel(this, 2, 3, 1);
 		
 		eventoTimer = new ActionListener() {
 			@Override
@@ -51,7 +54,7 @@ public class Juego {
 				actualizarEntidades();
 				resolverColisiones();
 				eliminarEntidadesMuertas();
-				hud.actualizarHUD(player.getCV(), 1 /*nivelActual.getNumero()*/, infectadosVivos,player.getEscudo(),player.getArmaSeleccionada());
+				hud.actualizarHUD(player.getCV(), 1 /*nivelActual.getNumero()*/, infectadosVivos,player.getEscudo(),player.getArmaSeleccionada(),player.tieneEfectoTemporal());
 				
 				//if (!(nivelActual.finNivel()))
 					// nivelActual.spawnEnemigos();
@@ -110,11 +113,11 @@ public class Juego {
 	
 	private void actualizarEntidades() {
 		// Aï¿½adido para evitar ConcurrentException al agregar Entidad en actualizar().
-		for (Entidad e : entidadesAÃ±adir) {
+		for (Entidad e : entidadesAñadir) {
 			entidades.add(e);
 		}
 		
-		entidadesAÃ±adir.clear();
+		entidadesAñadir.clear();
 		
 		for (Entidad e : entidades) {
 			e.actualizar();
@@ -158,7 +161,7 @@ public class Juego {
 	}
 	
 	public void agregarEntidad(Entidad e) {
-		entidadesAÃ±adir.add(e);
+		entidadesAñadir.add(e);
 		mapa.agregarGrafico(e.getEntidadGrafica());
 	}
 	
@@ -190,6 +193,8 @@ public class Juego {
 		t.stop();
 		t = new Timer((int)fpsEnMS, eventoPausa);
 		t.start();
+		
+		v.pausar();
 	}
 	
 	public void reanudar() {
