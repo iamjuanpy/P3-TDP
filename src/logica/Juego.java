@@ -23,9 +23,11 @@ public class Juego {
 	private HUD hud;
 	private PowerUpFactory fabrica;
 	
+	private Nivel[] niveles;
 	private Nivel nivelActual;
 	private Mapa mapa;
 	private int limiteX, limiteY;
+	private boolean fin;
 	
 	private ActionListener eventoTimer;
 	private ActionListener eventoPausa;
@@ -42,6 +44,7 @@ public class Juego {
 		this.v = v;
 		this.hud = v.getHud();
 		
+		fin = false;
 		nivelActual = new Nivel(this, 6, 4, 1);
 		
 		
@@ -64,6 +67,9 @@ public class Juego {
 				if (nivelActual.finNivel()) {
 					// siguiente nivel de alguna forma
 				}
+				
+				if (fin == false) // Chequea si ganó o perdió
+					fin = chequearVictoria();
 				
 				// ejecutar despues de cada transicion de nivel?
 				// mapa.setBackground(nivelActual.getBackground());
@@ -96,7 +102,7 @@ public class Juego {
 		t.start();
 
 	}
-	
+
 	public void testEntidades() {
 		/*
 		Entidad ia = new InfectadoAlpha(this,limiteX/2 + 70, 0 + 175,0,2, .2f);
@@ -209,4 +215,25 @@ public class Juego {
 		t = new Timer((int)fpsEnMS, eventoTimer);
 		t.start();
 	}
+	
+	
+	protected boolean chequearVictoria() {
+		
+		boolean ret = false;
+		
+		if (player.estaEliminado()) {// esta muerto
+			v.perder();
+			t.stop();
+			ret = true;
+		}
+		if (nivelActual.finNivel() && nivelActual == niveles[niveles.length]) { // termino el nivel y es el ultimo del array
+			v.ganar();
+			t.stop();
+			ret = true;
+		}
+		
+		return ret;
+		
+	}
+	
 }

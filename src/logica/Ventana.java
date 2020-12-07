@@ -14,6 +14,7 @@ public class Ventana extends JFrame {
 	private Menu menu;
 	private Ayuda ayuda;
 	private Pausa pausa;
+	private FinJuego fin;
 
 	
 	public static void main(String[] args) {
@@ -59,6 +60,7 @@ public class Ventana extends JFrame {
 		ayuda = new Ayuda(0,0,limiteX, limiteY,this);
 		display = new HUD(0, limiteY, limiteX, limiteY + alturaHUD);
 		pausa = new Pausa(this);
+		fin = new FinJuego(this);
 
 		add(menu);
 		add(ayuda);
@@ -76,6 +78,13 @@ public class Ventana extends JFrame {
 		int limiteX = getWidth();
 		int limiteY = getHeight() - alturaHUD;	
 		
+		if (mapa != null) {
+			remove(mapa);
+			mapa = null;
+			juego = null;
+			repaint();
+		}
+		
 		juego = new Juego(60 , limiteX, limiteY,this);
 		mapa = new Mapa(0, 0, limiteX, limiteY);
 
@@ -90,6 +99,16 @@ public class Ventana extends JFrame {
 		
 		juego.testEntidades();
 		
+	}
+	
+	public void ganar() {
+		fin.ganar();
+		fin.setVisible(true);
+	}
+	
+	public void perder() {
+		fin.perder();
+		fin.setVisible(true);
 	}
 
 	public void mostrarAyuda() {
