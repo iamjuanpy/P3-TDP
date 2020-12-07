@@ -94,7 +94,7 @@ public class Jugador extends Humano {
 	}
 	
 	public boolean tieneEfectoTemporal2() {
-		return (ef != null);
+		return (ef2 != null);
 	}
 	
 }

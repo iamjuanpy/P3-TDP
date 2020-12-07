@@ -1,11 +1,6 @@
 package logica;
 
-import java.awt.Color;
 import java.awt.EventQueue;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-
-import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 //import java.io.File;
 

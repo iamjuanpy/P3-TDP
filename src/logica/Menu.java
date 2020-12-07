@@ -5,11 +5,10 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class Menu extends JPanel{
+public class Menu extends JPanel {
 	private static final long serialVersionUID = -4569548655143314581L;
 
 	private Ventana v;

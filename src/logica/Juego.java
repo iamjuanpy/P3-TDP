@@ -4,16 +4,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
 import entidades.Entidad;
-import entidades.InfectadoAlpha;
-import entidades.InfectadoBeta;
 import entidades.Jugador;
 import entidades.PowerUpFactory;
-import entidades.PowerUp;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import premios.*; // import para testEntidades()
+// import premios.*; // import para testEntidades()
 
 public class Juego {
 	
@@ -46,7 +42,8 @@ public class Juego {
 		this.v = v;
 		this.hud = v.getHud();
 		
-		//nivelActual = new Nivel(this, 2, 3, 1);
+		nivelActual = new Nivel(this, 6, 4, 1);
+		
 		
 		eventoTimer = new ActionListener() {
 			@Override
@@ -56,9 +53,17 @@ public class Juego {
 				eliminarEntidadesMuertas();
 				hud.actualizarHUD(player.getCV(), 1 /*nivelActual.getNumero()*/, infectadosVivos,player.getEscudo(),player.getArmaSeleccionada(),player.tieneEfectoTemporal());
 				
-				//if (!(nivelActual.finNivel()))
-					// nivelActual.spawnEnemigos();
-				//else nivelActual = listaNiveles.next() ?
+				if (nivelActual.hayInfectadosParaSpawnear()) {
+					nivelActual.spawnEnemigos();					
+				}
+				
+				if (!hayInfectadosVivos()) {
+					nivelActual.siguienteTanda();
+				}
+				
+				if (nivelActual.finNivel()) {
+					// siguiente nivel de alguna forma
+				}
 				
 				// ejecutar despues de cada transicion de nivel?
 				// mapa.setBackground(nivelActual.getBackground());
@@ -84,7 +89,7 @@ public class Juego {
 		 * 60 fps -- 1 seg
 		 *  1 fps -- ? seg <- 1/60
 		 * Hay un poco de perdida de precision, pero se tiene que castear a int porque eso requiere Timer.
-		 * El error es una cantidad demasiado pequeï¿½a para importar.
+		 * El error es una cantidad demasiado pequeña para importar.
 		 */
 		fpsEnMS = ( 1/ (float) FPS ) * 1000;
 		t = new Timer((int)fpsEnMS, eventoTimer);
@@ -93,8 +98,9 @@ public class Juego {
 	}
 	
 	public void testEntidades() {
-		Entidad ia = new InfectadoAlpha(this,limiteX/2 + 70, 0 + 175,0,2);
-		Entidad ib = new InfectadoBeta(this,limiteX/2 - 70, 0 + 75,0,2);
+		/*
+		Entidad ia = new InfectadoAlpha(this,limiteX/2 + 70, 0 + 175,0,2, .2f);
+		Entidad ib = new InfectadoBeta(this,limiteX/2 - 70, 0 + 75,0,2, .2f);
 		spawneoInfectado();
 		spawneoInfectado();
 		
@@ -109,10 +115,11 @@ public class Juego {
 		agregarEntidad(p3);
 		Entidad p4 = new PowerUp(new Escudo(player),this,limiteX/2,-70,1,2);
 		agregarEntidad(p4);
+		*/
 	}
 	
 	private void actualizarEntidades() {
-		// Aï¿½adido para evitar ConcurrentException al agregar Entidad en actualizar().
+		// Añadido para evitar ConcurrentException al agregar Entidad en actualizar().
 		for (Entidad e : entidadesAñadir) {
 			entidades.add(e);
 		}

@@ -9,19 +9,10 @@ import entidades.Infectado;
 import entidades.InfectadoAlpha;
 import entidades.InfectadoBeta;
 
-public abstract class Nivel {
-	/*
-	 * Clases que especializan Nivel tienen que tener:
-	 * -> una referencia al mapa?
-	 * -> un ImageIcon como imagen de fondo?
-	 * -> instanciar a sus infectados segun parametros internos que varian
-	 *     |-> Es decir, un nivel puede definir una cantidad de infectados alfa y/o beta
-	 *         y los puede instanciar y agregar al mapa como vea necesario (hacerlo en un thread aparte?)
-	 * -> una cantidad de tandas definidas?
-	 * -> musica para el thread?  
-	 */
-	
+public class Nivel {	
 	protected Juego juego;
+	protected File musica;
+	protected ImageIcon background;
 	
 	// Limite 1 < Limite2
 	// limite2 < juego.getWidth()
@@ -31,72 +22,80 @@ public abstract class Nivel {
 	protected float multiplier; // Para ir subiendo la dificultad cada nivel
 	protected int cantidadAlfa;
 	protected int cantidadBeta;
-	protected int cAlfaTanda;
-	protected int cBetaTanda;
-	
+		
+	// La especificacion indica 2 tandas por nivel
 	protected int cantidadTandas = 2;
 	protected int tandaActual = cantidadTandas;
 	
-	protected File musica;
-	protected ImageIcon background;
+	protected int cAlfaTanda;
+	protected int cBetaTanda;	
 	
 	// Auxiliar para spawnEnemigos
-	private int auxAlfa;
-	private int auxBeta;
-	private int posX;
-	private int posY;
+	private int infectadosASpawnear;
+	private int infectadosTandaActual;
+	
+	private Random rng;
 	
 	public Nivel(Juego j, int cantA, int cantB, float mp) {
 		juego = j;
 		cantidadAlfa = cantA;
 		cantidadBeta = cantB;
 		
+		limite1 = 60;
+		limite2 = 400;
+		
 		cAlfaTanda = cantidadAlfa/cantidadTandas;
 		cBetaTanda = cantidadBeta/cantidadTandas;
 		
+		infectadosASpawnear = cAlfaTanda + cBetaTanda;
+		System.out.println(infectadosASpawnear);
+		
 		multiplier = mp;
+		rng = new Random();
 	}
 	
+	public int randInt(int min, int max) {
+	    return rng.nextInt((max - min) + 1) + min;
+	}	
+	
 	public void spawnEnemigos() {
+		// Todos los enemigos de una tanda a la vez
+		tandaActual--;
 		
-		if ((!juego.hayInfectadosVivos()) && tandaActual != 0) {
+		int vx = 0;
+		int vy = 4;
+		
+		int h = 50;
+		int multiplicador_y;
+		int posX;
+		int posY = -h;
+		Infectado inf;
+		
+		infectadosTandaActual = infectadosASpawnear;
+		
+		while (infectadosTandaActual-- > 0) {
+			posX = randInt(limite1, limite2);
 			
-			Random rPos = new Random(); // Random para posX
-			Random rInf = new Random(); // Random para tipoInfectado
-			
-			posX = 0;
-			
-			while (posX < limite1) { // Randomiza X dentro de los limites del mapa
-				posX = rPos.nextInt(limite2);
+			if (rng.nextFloat() < 0.6f) {
+				inf = new InfectadoAlpha(juego, posX, posY, vx, vy, multiplier);
+			} else {
+				 inf = new InfectadoBeta(juego, posX, posY, vx, vy, multiplier);
 			}
 			
-			if ((cAlfaTanda + cBetaTanda) % 4 == 0) // Randomiza la altura para que no aparezcan muchos en fila
-				posY = posY - 50;
+			juego.agregarEntidad(inf);
+			juego.spawneoInfectado();
 			
-			// Randomiza que infectado spawnea
-			if (rInf.nextInt(10) >= 4 && auxAlfa != 0) {
-				Infectado a = new InfectadoAlpha(juego,posX,posY,0,10);
-				juego.agregarEntidad(a);
-				juego.spawneoInfectado();
-				auxAlfa--;
-			}
-			else if (auxBeta != 0) {
-				Infectado b = new InfectadoBeta(juego,posX,posY,0,10); // Agregar algun parametro para mandar el multiplier
-				juego.agregarEntidad(b);
-				juego.spawneoInfectado();
-				auxBeta--;
-			}
-			
-			// Pasa a la otra tanda
-			if (auxAlfa == 0 && auxBeta == 0) {
-				tandaActual--;
-				auxAlfa = cAlfaTanda;
-				auxBeta = cBetaTanda;
-			}
-			
+			multiplicador_y = randInt(1, 4);
+			posY -= h*multiplicador_y;
 		}
-		
-		
+	}
+	
+	public void siguienteTanda() {
+		infectadosTandaActual = infectadosASpawnear; 
+	}
+	
+	public boolean hayInfectadosParaSpawnear() {
+		return infectadosTandaActual >= 0;
 	}
 	
 	public boolean finNivel() {
@@ -106,4 +105,9 @@ public abstract class Nivel {
 	public ImageIcon getBackground() {
 		return background;
 	}
+	
+	public File getMusica() {
+		return musica;
+	}
+	
 }

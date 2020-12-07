@@ -7,9 +7,9 @@ import visitors.Visitor;
 
 public class InfectadoAlpha extends Infectado {
 
-	public InfectadoAlpha(Juego juego, int x, int y, int vx, int vy) {
+	public InfectadoAlpha(Juego juego, int x, int y, int vx, int vy, float multiplicadorDaño) {
 		// Son faciles de desinfectar, pero hacen mas daño
-		super(new ArmaInfectados(juego, 15),juego,x,y,vx, vy);
+		super(new ArmaInfectados(juego, (int) (15 * multiplicadorDaño) ),juego,x,y,vx,vy);
 		grafico = new Grafico("InfectadoAlfa",x,y);
 		setCV(cargaViralInicial/2);
 		
