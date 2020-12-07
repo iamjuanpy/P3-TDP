@@ -1,5 +1,7 @@
 package entidades;
 
+import java.util.Random;
+
 import armas.ArmaInfectados;
 import logica.Juego;
 import estrategias.EstrategiaMovInfectados;
@@ -13,7 +15,11 @@ public class InfectadoBeta extends Infectado {
 		super(new ArmaInfectados(juego, (int) (10 * multiplicadorDaño) ),juego,x,y,vx,vy);
 		setCV(cargaViralInicial);
 		
-		grafico = new Grafico("InfectadoBeta",x,y);
+		Random r = new Random();
+		
+		if (r.nextFloat()< 0.5f)
+			grafico = new Grafico("InfectadoBeta",x,y);
+		else grafico = new Grafico("InfectadoBeta2",x,y);
 		
 		visitante = new VisitorInfectadoBeta(this);
 		movStrat = new EstrategiaMovInfectados(this);
