@@ -49,10 +49,12 @@ public class FinJuego extends JFrame {
 	}
 
 	public void ganar() {
+		Continuar.setBounds(128,193,116,29);
 		background.setIcon(new ImageIcon("img/victoria.png")); 
 	}
 	
 	public void perder() {
+		Continuar.setBounds(130,193,116,29);
 		background.setIcon(new ImageIcon("img/derrota.png")); 
 	}
 	

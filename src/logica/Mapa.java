@@ -26,7 +26,7 @@ public class Mapa extends JPanel {
 		
 		background = new JLabel();
 		background.setBounds(x, y, limiteX, limiteY);
-		background.setIcon(new ImageIcon("img/bg2.png")); // eliminar despues de agregar niveles
+		//background.setIcon(new ImageIcon("img/bg2.png")); // eliminar despues de agregar niveles
 		add(background);
 	}
 	
@@ -59,6 +59,7 @@ public class Mapa extends JPanel {
 	
 	public void setBackground(ImageIcon fondo) {
 		background.setIcon(fondo);
+		background.revalidate();
 	}
 
 }

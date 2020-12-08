@@ -36,22 +36,23 @@ public class Nivel {
 	
 	private Random rng;
 	
-	public Nivel(Juego j, int cantA, int cantB, float mp) {
+	public Nivel(Juego j, int cantA, int cantB, float mp, int limite1, int limite2, ImageIcon background) {
 		juego = j;
 		cantidadAlfa = cantA;
 		cantidadBeta = cantB;
 		
-		limite1 = 60;
-		limite2 = 400;
+		this.limite1 = limite1;
+		this.limite2 = limite2;
 		
 		cAlfaTanda = cantidadAlfa/cantidadTandas;
 		cBetaTanda = cantidadBeta/cantidadTandas;
 		
 		infectadosASpawnear = cAlfaTanda + cBetaTanda;
-		System.out.println(infectadosASpawnear);
 		
+		this.background = background;
 		multiplier = mp;
 		rng = new Random();
+		
 	}
 	
 	public int randInt(int min, int max) {
@@ -60,6 +61,8 @@ public class Nivel {
 	
 	public void spawnEnemigos() {
 		// Todos los enemigos de una tanda a la vez
+		
+		System.out.println("Spawneo tanda"+ tandaActual);
 		tandaActual--;
 		
 		int vx = 0;
@@ -73,7 +76,7 @@ public class Nivel {
 		
 		infectadosTandaActual = infectadosASpawnear;
 		
-		while (infectadosTandaActual-- > 0) {
+		while (infectadosTandaActual-- >= 0) {
 			posX = randInt(limite1, limite2);
 			
 			if (rng.nextFloat() < 0.6f) {

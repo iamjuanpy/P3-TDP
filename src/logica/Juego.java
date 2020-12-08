@@ -2,12 +2,17 @@ package logica;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
 import javax.swing.Timer;
 import entidades.Entidad;
 import entidades.Jugador;
 import entidades.PowerUpFactory;
+import premios.Cuarentena;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 // import premios.*; // import para testEntidades()
 
@@ -23,11 +28,11 @@ public class Juego {
 	private HUD hud;
 	private PowerUpFactory fabrica;
 	
-	private Nivel[] niveles;
 	private Nivel nivelActual;
+	private Stack<Nivel> niveles;
+	private int nivelIndex;
 	private Mapa mapa;
 	private int limiteX, limiteY;
-	private boolean fin;
 	
 	private ActionListener eventoTimer;
 	private ActionListener eventoPausa;
@@ -43,10 +48,8 @@ public class Juego {
 		
 		this.v = v;
 		this.hud = v.getHud();
-		
-		fin = false;
-		nivelActual = new Nivel(this, 6, 4, 1);
-		
+
+		crearNiveles();
 		
 		eventoTimer = new ActionListener() {
 			@Override
@@ -54,25 +57,9 @@ public class Juego {
 				actualizarEntidades();
 				resolverColisiones();
 				eliminarEntidadesMuertas();
-				hud.actualizarHUD(player.getCV(), 1 /*nivelActual.getNumero()*/, infectadosVivos,player.getEscudo(),player.getArmaSeleccionada(),player.tieneEfectoTemporal());
-				
-				if (nivelActual.hayInfectadosParaSpawnear()) {
-					nivelActual.spawnEnemigos();					
-				}
-				
-				if (!hayInfectadosVivos()) {
-					nivelActual.siguienteTanda();
-				}
-				
-				if (nivelActual.finNivel()) {
-					// siguiente nivel de alguna forma
-				}
-				
-				if (fin == false) // Chequea si ganó o perdió
-					fin = chequearVictoria();
-				
-				// ejecutar despues de cada transicion de nivel?
-				// mapa.setBackground(nivelActual.getBackground());
+				hud.actualizarHUD(player.getCV(), nivelIndex, infectadosVivos,player.getEscudo(),player.getArmaSeleccionada(),player.tieneEfectoTemporal());
+				chequearMuerte();
+				manejarNiveles();
 					
 				//System.out.println("Carga Viral: "+player.getCV()); // DEBUG
 				//System.out.println("Cantidad de entidades: "+entidades.size()); // DEBUG
@@ -154,6 +141,49 @@ public class Juego {
 	        
 	}
 	
+	private void chequearMuerte() {
+		
+		// Si está eliminado, pierde
+		if (player.estaEliminado()) {
+			v.perder();
+			t.stop();
+		}
+		
+	}
+	
+	private void manejarNiveles() {
+		
+		if (nivelActual == null) {
+			nivelActual = niveles.pop();
+			mapa.setBackground(nivelActual.getBackground());
+			nivelIndex++;
+		}
+		
+		if (!hayInfectadosVivos()) {
+			
+			player.deleteEfectoTemporal(new Cuarentena(player));
+			
+			if (nivelActual.finNivel()) {
+				
+				if (!niveles.isEmpty()) {
+					nivelActual = niveles.pop();
+					mapa.setBackground(nivelActual.getBackground());
+					nivelIndex++;
+				}
+				else {
+					v.ganar();
+					t.stop();
+				}
+				
+			} else nivelActual.siguienteTanda();
+
+			if (nivelActual.hayInfectadosParaSpawnear())
+				 nivelActual.spawnEnemigos();
+			
+		}  
+			
+	}
+	
 	public void crearJugador() {
 		if (player == null) {
 			player = new Jugador(this, limiteX/2, limiteY - 50, 6, 0);
@@ -161,7 +191,21 @@ public class Juego {
 		}
 	}
 	
+	private void crearNiveles() {
+		
+		nivelIndex = 0;
+		
+		niveles = new Stack<Nivel>();
+		niveles.push(new Nivel(this,1,1,2,70,525,new ImageIcon("img/bg5.png")));
+		niveles.push(new Nivel(this,1,1,1.7f,25,410,new ImageIcon("img/bg4.png")));
+		niveles.push(new Nivel(this,1,1,1.5f,130,450,new ImageIcon("img/bg3.png")));
+		niveles.push(new Nivel(this,1,1,1.2f,65,380,new ImageIcon("img/bg2.png")));
+		niveles.push(new Nivel(this,1,1,1,65,500,new ImageIcon("img/bg.png")));
+		
+	}
+	
 	public PowerUpFactory getPowerUpFactory() {
+		
 		if (fabrica == null) {
 			fabrica = new PowerUpFactory(this, player);
 		}
@@ -169,13 +213,21 @@ public class Juego {
 		return fabrica;
 	}
 	
-	public List<Entidad> getEntidades(){
-		return entidades;
-	}
-	
 	public void agregarEntidad(Entidad e) {
 		entidadesAñadir.add(e);
 		mapa.agregarGrafico(e.getEntidadGrafica());
+	}
+	
+	public void spawneoInfectado() {
+		infectadosVivos++;
+	}
+	
+	public void murioInfectado() {
+		infectadosVivos--;
+	}
+	
+	public List<Entidad> getEntidades(){
+		return entidades;
 	}
 	
 	public Jugador getPlayer() {
@@ -188,14 +240,6 @@ public class Juego {
 	
 	public void setMapa(Mapa m) {
 		mapa = m;
-	}
-	
-	public void spawneoInfectado() {
-		infectadosVivos++;
-	}
-	
-	public void murioInfectado() {
-		infectadosVivos--;
 	}
 	
 	public boolean hayInfectadosVivos() {
@@ -214,26 +258,6 @@ public class Juego {
 		t.stop();
 		t = new Timer((int)fpsEnMS, eventoTimer);
 		t.start();
-	}
-	
-	
-	protected boolean chequearVictoria() {
-		
-		boolean ret = false;
-		
-		if (player.estaEliminado()) {// esta muerto
-			v.perder();
-			t.stop();
-			ret = true;
-		}
-		if (nivelActual.finNivel() && nivelActual == niveles[niveles.length]) { // termino el nivel y es el ultimo del array
-			v.ganar();
-			t.stop();
-			ret = true;
-		}
-		
-		return ret;
-		
 	}
 	
 }
