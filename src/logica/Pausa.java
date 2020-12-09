@@ -29,7 +29,7 @@ public class Pausa extends JFrame {
 		this.v = v;
 		
 		background = new JLabel();
-		background.setIcon(new ImageIcon("img/pausa.png")); 
+		background.setIcon(new ImageIcon(getClass().getResource("/img/pausa.png"))); 
 		background.setBounds(0,0,500,300);
 		add(background);
 		

@@ -58,6 +58,7 @@ public class HUD extends JPanel {
 		add(arma);
 		add(escudo);
 		add(cuarentena);
+		add(new JLabel("  "));
 		
 		actualizarHUD(75, 5, 6, true, "Default",false); // Hud inicial
 	}
@@ -73,9 +74,9 @@ public class HUD extends JPanel {
 
 	private void actualizarCargaViral(int cv) {
 		
-		ImageIcon imgFull = new ImageIcon("img/full.png"); 
-		ImageIcon imgMedio = new ImageIcon("img/medio.png"); 
-		ImageIcon imgCero = new ImageIcon("img/cero.png"); 
+		ImageIcon imgFull = new ImageIcon(getClass().getResource("/img/full.png")); 
+		ImageIcon imgMedio = new ImageIcon(getClass().getResource("/img/medio.png")); 
+		ImageIcon imgCero = new ImageIcon(getClass().getResource("/img/cero.png")); 
 		
 		int aux = 0;
 		int auxcv = 100 - cv;
@@ -99,8 +100,8 @@ public class HUD extends JPanel {
 	}
 	
 	private void actualizarEscudo(boolean e) {
-		ImageIcon imgEscudo = new ImageIcon("img/conEsc.png");
-		ImageIcon imgSinEscudo = new ImageIcon("img/sinEsc.png");
+		ImageIcon imgEscudo = new ImageIcon(getClass().getResource("/img/conEsc.png"));
+		ImageIcon imgSinEscudo = new ImageIcon(getClass().getResource("/img/sinEsc.png"));
 		
 		if (e)
 			escudo.setIcon(imgEscudo);
@@ -109,9 +110,9 @@ public class HUD extends JPanel {
 	
 	private void actualizarArma(String armaS) {
 		
-		ImageIcon imgDefault = new ImageIcon("img/hudDefault.png");
-		ImageIcon imgRapida = new ImageIcon("img/hudRapida.png");
-		ImageIcon imgSuper = new ImageIcon("img/hudSuper.png");
+		ImageIcon imgDefault = new ImageIcon(getClass().getResource("/img/hudDefault.png"));
+		ImageIcon imgRapida = new ImageIcon(getClass().getResource("/img/hudRapida.png"));
+		ImageIcon imgSuper = new ImageIcon(getClass().getResource("/img/hudSuper.png"));
 		
 		if (armaS == "Default")
 			arma.setIcon(imgDefault);
@@ -124,8 +125,8 @@ public class HUD extends JPanel {
 	}
 	
 	private void actualizarCuarentena(boolean cuarentena2) {
-		ImageIcon imgCuaren = new ImageIcon("img/cuarentena.png");
-		ImageIcon imgNormal = new ImageIcon("img/normal.png");
+		ImageIcon imgCuaren = new ImageIcon(getClass().getResource("/img/cuarentena.png"));
+		ImageIcon imgNormal = new ImageIcon(getClass().getResource("/img/normal.png"));
 		
 		if (cuarentena2)
 			cuarentena.setIcon(imgCuaren);

@@ -49,7 +49,7 @@ public class Ventana extends JFrame {
 		// PASSPORT es solo un placeholder por ahora.
 		// Creo que viene de Windows 95
 		
-		//File midi = new File("midi/PASSPORT.mid");
+		//File midi = new File(getClass().getResource("/midi/PASSPORT.mid"));
 		//Thread t = new Thread(new MusicaRunnable(midi, true));
 		//t.run();
 		
@@ -97,8 +97,6 @@ public class Ventana extends JFrame {
 		
 		add(mapa);
 		mapa.requestFocusInWindow();
-		
-		juego.testEntidades();
 		
 	}
 	

@@ -94,8 +94,9 @@ public class Juego {
 
 	}
 
+	/*
 	public void testEntidades() {
-		/*
+		
 		Entidad ia = new InfectadoAlpha(this,limiteX/2 + 70, 0 + 175,0,2, .2f);
 		Entidad ib = new InfectadoBeta(this,limiteX/2 - 70, 0 + 75,0,2, .2f);
 		spawneoInfectado();
@@ -112,8 +113,8 @@ public class Juego {
 		agregarEntidad(p3);
 		Entidad p4 = new PowerUp(new Escudo(player),this,limiteX/2,-70,1,2);
 		agregarEntidad(p4);
-		*/
-	}
+		
+	}*/
 	
 	private void actualizarEntidades() {
 		// Añadido para evitar ConcurrentException al agregar Entidad en actualizar().
@@ -210,11 +211,11 @@ public class Juego {
 		// MEJORAR limites de spawneo teniendo en cuenta ancho del infectado???
 		
 		niveles = new Stack<Nivel>();
-		niveles.push(new Nivel(this,7,7,1.7f,70,525,new ImageIcon("img/bg5.png")));
-		niveles.push(new Nivel(this,7,7,1.5f,25,380,new ImageIcon("img/bg4.png")));
-		niveles.push(new Nivel(this,6,6,1.2f,130,450,new ImageIcon("img/bg3.png")));
-		niveles.push(new Nivel(this,5,5,1f,65,380,new ImageIcon("img/bg2.png")));
-		niveles.push(new Nivel(this,5,5,0.8f,65,500,new ImageIcon("img/bg.png")));
+		niveles.push(new Nivel(this,7,7,1.7f,70,525,new ImageIcon(getClass().getResource("/img/bg5.png"))));
+		niveles.push(new Nivel(this,7,7,1.5f,25,380,new ImageIcon(getClass().getResource("/img/bg4.png"))));
+		niveles.push(new Nivel(this,6,6,1.2f,130,450,new ImageIcon(getClass().getResource("/img/bg3.png"))));
+		niveles.push(new Nivel(this,5,5,1f,65,380, new ImageIcon(getClass().getResource("/img/bg2.png"))));
+		niveles.push(new Nivel(this,5,5,0.8f,65,500,new ImageIcon(getClass().getResource("/img/bg.png"))));
 		
 	}
 	

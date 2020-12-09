@@ -30,7 +30,7 @@ public class FinJuego extends JFrame {
 		this.v = v;
 		
 		background = new JLabel();
-		background.setIcon(new ImageIcon("img/victoria.png")); 
+		background.setIcon(new ImageIcon(getClass().getResource("/img/victoria.png"))); 
 		background.setBounds(0,0,500,300);
 		add(background);
 		
@@ -50,12 +50,12 @@ public class FinJuego extends JFrame {
 
 	public void ganar() {
 		Continuar.setBounds(128,193,116,29);
-		background.setIcon(new ImageIcon("img/victoria.png")); 
+		background.setIcon(new ImageIcon(getClass().getResource("/img/victoria.png"))); 
 	}
 	
 	public void perder() {
 		Continuar.setBounds(130,193,116,29);
-		background.setIcon(new ImageIcon("img/derrota.png")); 
+		background.setIcon(new ImageIcon(getClass().getResource("/img/derrota.png"))); 
 	}
 	
 	private class OyenteC implements ActionListener{

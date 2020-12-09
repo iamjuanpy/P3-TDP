@@ -29,7 +29,7 @@ public class Menu extends JPanel {
 		
 		background = new JLabel();
 		background.setBounds(x, y, limiteX, limiteY);
-		background.setIcon(new ImageIcon("img/menu.png")); 
+		background.setIcon(new ImageIcon(getClass().getResource("/img/menu.png"))); 
 		add(background);
 		
 		btnJugar = new JButton("Jugar");

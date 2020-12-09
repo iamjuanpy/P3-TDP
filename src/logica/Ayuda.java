@@ -24,7 +24,7 @@ public class Ayuda extends JPanel {
 		
 		background = new JLabel();
 		background.setBounds(x, y, limiteX, limiteY);
-		background.setIcon(new ImageIcon("img/ayuda.png")); 
+		background.setIcon(new ImageIcon(getClass().getResource("/img/ayuda.png"))); 
 		add(background);
 		
 		btnVolver = new JButton("Volver");
