@@ -55,11 +55,12 @@ public class Mapa extends JPanel {
 	public void agregarGrafico(Grafico g) {
 		add(g);
 		setComponentZOrder(g, 0);
+		repaint();
 	}
 	
 	public void setBackground(ImageIcon fondo) {
 		background.setIcon(fondo);
-		background.revalidate();
+		//background.revalidate();
 	}
 
 }

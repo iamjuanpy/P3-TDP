@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.Timer;
+
+import entidades.AnimacionTemporal;
 import entidades.Entidad;
 import entidades.Jugador;
 import entidades.PowerUpFactory;
@@ -31,6 +33,8 @@ public class Juego {
 	private Nivel nivelActual;
 	private Stack<Nivel> niveles;
 	private int nivelIndex;
+	private int nivelCD; // Tiempo entre oleadas/niveles
+	
 	private Mapa mapa;
 	private int limiteX, limiteY;
 	
@@ -153,32 +157,39 @@ public class Juego {
 	
 	private void manejarNiveles() {
 		
+		// Inicializa el primer nivel
 		if (nivelActual == null) {
 			nivelActual = niveles.pop();
-			mapa.setBackground(nivelActual.getBackground());
 			nivelIndex++;
+			mapa.setBackground(nivelActual.getBackground());
 		}
 		
 		if (!hayInfectadosVivos()) {
 			
-			player.deleteEfectoTemporal(new Cuarentena(player));
+			player.deleteEfectoTemporal(new Cuarentena(player)); // Modo de arreglar el hud, para que no marque que hay cuarentena de una oleada pasada
 			
-			if (nivelActual.finNivel()) {
+			if (nivelActual.finNivel()) { 
 				
-				if (!niveles.isEmpty()) {
+				if (!niveles.isEmpty()) { // Si quedan niveles, aparece la animacion de cargando y pasa al siguiente nivel
 					nivelActual = niveles.pop();
-					mapa.setBackground(nivelActual.getBackground());
 					nivelIndex++;
+					agregarEntidad(new AnimacionTemporal("Cargando",this,300,400,0,0,100));
 				}
-				else {
+				else { // Si no, ya ganó
 					v.ganar();
 					t.stop();
 				}
 				
 			} else nivelActual.siguienteTanda();
 
-			if (nivelActual.hayInfectadosParaSpawnear())
-				 nivelActual.spawnEnemigos();
+			if (nivelActual.hayInfectadosParaSpawnear()) {
+				if (nivelCD == 0) { // Cuando termina el cooldown
+					nivelActual.spawnEnemigos();					// Spawnea enemigos 
+					mapa.setBackground(nivelActual.getBackground());// Si pasó de nivel, cambia la imagen
+					nivelCD = 100;
+				}
+				else nivelCD--;
+			}
 			
 		}  
 			
@@ -195,12 +206,15 @@ public class Juego {
 		
 		nivelIndex = 0;
 		
+		// MEJORAR este metodo o externalizarlo a otra clase
+		// MEJORAR limites de spawneo teniendo en cuenta ancho del infectado???
+		
 		niveles = new Stack<Nivel>();
-		niveles.push(new Nivel(this,1,1,2,70,525,new ImageIcon("img/bg5.png")));
-		niveles.push(new Nivel(this,1,1,1.7f,25,410,new ImageIcon("img/bg4.png")));
-		niveles.push(new Nivel(this,1,1,1.5f,130,450,new ImageIcon("img/bg3.png")));
-		niveles.push(new Nivel(this,1,1,1.2f,65,380,new ImageIcon("img/bg2.png")));
-		niveles.push(new Nivel(this,1,1,1,65,500,new ImageIcon("img/bg.png")));
+		niveles.push(new Nivel(this,7,7,1.7f,70,525,new ImageIcon("img/bg5.png")));
+		niveles.push(new Nivel(this,7,7,1.5f,25,380,new ImageIcon("img/bg4.png")));
+		niveles.push(new Nivel(this,6,6,1.2f,130,450,new ImageIcon("img/bg3.png")));
+		niveles.push(new Nivel(this,5,5,1f,65,380,new ImageIcon("img/bg2.png")));
+		niveles.push(new Nivel(this,5,5,0.8f,65,500,new ImageIcon("img/bg.png")));
 		
 	}
 	

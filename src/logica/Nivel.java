@@ -62,7 +62,6 @@ public class Nivel {
 	public void spawnEnemigos() {
 		// Todos los enemigos de una tanda a la vez
 		
-		System.out.println("Spawneo tanda"+ tandaActual);
 		tandaActual--;
 		
 		int vx = 0;

@@ -6,7 +6,7 @@ import logica.Juego;
 public class ArmaInfectados extends Arma{
 
 	public ArmaInfectados(Juego juego, int daño) {
-		super(juego, daño, 80);
+		super(juego, daño, 90);
 		nombre = "ArmaInfectados";
 	}
 	
