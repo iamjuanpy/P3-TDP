@@ -22,6 +22,9 @@ public class Pocion extends Consumible {
 		Entidad ent = new AnimacionTemporal("DeleteBala",jugador.getJuego(),xEfec,yEfec,0,0,25);
 		jugador.getJuego().agregarEntidad(ent);
 		
+		Entidad texto = new AnimacionTemporal("getPocion",jugador.getJuego(),300,400,0,0,35);
+		jugador.getJuego().agregarEntidad(texto);
+		
 	}
 
 }

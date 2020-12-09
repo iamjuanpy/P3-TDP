@@ -6,6 +6,8 @@ import armas.Arma;
 import armas.ArmaDefault;
 import armas.ArmaRapida;
 import armas.ArmaSuper;
+import entidades.AnimacionTemporal;
+import entidades.Entidad;
 import entidades.Jugador;
 
 public class ArmaTemporal extends EfectoTemporal {
@@ -30,6 +32,9 @@ public class ArmaTemporal extends EfectoTemporal {
 		jugador.setEfectoTemporal(this);
 		
 		jugador.setArma(arma);
+		
+		Entidad texto = new AnimacionTemporal("getArma",jugador.getJuego(),300,400,0,0,35);
+		jugador.getJuego().agregarEntidad(texto);
 	}
 
 	protected void desactivar() {

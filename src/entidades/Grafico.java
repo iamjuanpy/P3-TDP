@@ -48,7 +48,12 @@ public class Grafico extends JLabel {
 			mapeoSprites.put("DeleteInfeccion", new ImageIcon(getClass().getResource("/img/hitInfeccion.gif")));
 			mapeoSprites.put("DeleteBala", new ImageIcon(getClass().getResource("/img/healing.gif")));
 			mapeoSprites.put("Melee", new ImageIcon(getClass().getResource("/img/hit.gif")));
+			// Texto
 			mapeoSprites.put("Cargando", new ImageIcon(getClass().getResource("/img/cargandolvl.gif")));
+			mapeoSprites.put("getPocion", new ImageIcon(getClass().getResource("/img/getPocion.gif")));
+			mapeoSprites.put("getCuarentena", new ImageIcon(getClass().getResource("/img/getCuarentena.gif")));
+			mapeoSprites.put("getEscudo", new ImageIcon(getClass().getResource("/img/getEscudo.gif")));
+			mapeoSprites.put("getArma", new ImageIcon(getClass().getResource("/img/getArma.gif")));
 		}
 		
 		imagen = mapeoSprites.get(tipo);

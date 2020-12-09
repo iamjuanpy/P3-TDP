@@ -25,7 +25,7 @@ public class VisitorInfectadoCuarentena extends Visitor {
 		
 		if (freeze) {
 			a.setEstrategiaMov(new EstrategiaMovNulo(a));
-			g.setImagen(str+"S");
+			g.setImagen(str.replace("S","")+"S");
 		}
 		else {
 			a.setEstrategiaMov(new EstrategiaMovInfectados(a));
@@ -41,7 +41,7 @@ public class VisitorInfectadoCuarentena extends Visitor {
 		
 		if (freeze) {
 			b.setEstrategiaMov(new EstrategiaMovNulo(b));
-			g.setImagen(str+"S");
+			g.setImagen(str.replace("S","")+"S");
 		}
 		else { 
 			b.setEstrategiaMov(new EstrategiaMovInfectados(b));

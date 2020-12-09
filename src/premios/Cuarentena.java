@@ -2,6 +2,7 @@ package premios;
 
 import java.util.List;
 
+import entidades.AnimacionTemporal;
 import entidades.Entidad;
 import entidades.Jugador;
 import visitors.Visitor;
@@ -20,6 +21,9 @@ public class Cuarentena extends EfectoTemporal {
 	@Override
 	public void activar() {
 		jugador.setEfectoTemporal(this);
+		
+		Entidad texto = new AnimacionTemporal("getCuarentena",jugador.getJuego(),300,400,0,0,35);
+		jugador.getJuego().agregarEntidad(texto);
 		
 		List<Entidad> entidades = jugador.getJuego().getEntidades();
 		Visitor v = new VisitorInfectadoCuarentena(null, true);
