@@ -78,15 +78,13 @@ public class Jugador extends Humano {
 	public void setEfectoTemporal(EfectoTemporal ef) {
 		if (ef.toString() == "Cuarentena")
 			this.ef = ef;
-		else this.ef2 = ef; 
-		// System.out.println("Agregado :"+ef.toString()); // DEBUG
+		else this.ef2 = ef;
 	}
 
 	public void deleteEfectoTemporal(EfectoTemporal ef) {
 		if (ef.toString() == "Cuarentena")
 			this.ef = null;
-		else this.ef2 = null; 
-		// System.out.println("Eliminado :"+ef.toString()); // DEBUG
+		else this.ef2 = null;
 	}
 	
 	public boolean tieneEfectoTemporal() {

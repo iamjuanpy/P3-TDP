@@ -23,8 +23,6 @@ public class Musica extends Thread {
 	public void cambiarMusica(String musica) {
 		estaDetenido = true;
 		URL archivo = getClass().getResource(musica);
-		// System.out.println("Path: " + musica); // DEBUG
-		// System.out.println("Archivo: " + archivo); // DEBUG
 		
 		try {
 			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(archivo);

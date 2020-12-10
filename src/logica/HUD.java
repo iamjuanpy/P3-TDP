@@ -25,11 +25,6 @@ public class HUD extends JPanel {
 		setBounds(x, y, limiteX, altura);
 		setBackground(new Color(102, 153, 0));
 		setLayout(layout);
-
-		// Para ver fuentes disponibles
-		// for (String s : GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames()) {
-		//	 System.out.println(s);
-		// }
 		
 		Font fuenteLabel = new Font("Lucida Console", Font.BOLD, 14);
 		

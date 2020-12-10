@@ -1,12 +1,15 @@
 package armas;
 
+import java.util.Random;
+
 import entidades.ParticulaInfeccion;
 import logica.Juego;
 
 public class ArmaInfectados extends Arma{
+	private static Random rng = new Random();
 
 	public ArmaInfectados(Juego juego, int daño) {
-		super(juego, daño, 90);
+		super(juego, daño, 90+rng.nextInt(15));
 		nombre = "ArmaInfectados";
 	}
 	

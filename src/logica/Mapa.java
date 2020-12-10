@@ -59,7 +59,6 @@ public class Mapa extends JPanel {
 	
 	public void setBackground(ImageIcon fondo) {
 		background.setIcon(fondo);
-		//background.revalidate();
 	}
 
 }

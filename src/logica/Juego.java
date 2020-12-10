@@ -64,9 +64,6 @@ public class Juego {
 				hud.actualizarHUD(player.getCV(), nivelIndex, infectadosVivos,player.getEscudo(),player.getArmaSeleccionada(),player.tieneEfectoTemporal());
 				chequearMuerte();
 				manejarNiveles();
-					
-				//System.out.println("Carga Viral: "+player.getCV()); // DEBUG
-				//System.out.println("Cantidad de entidades: "+entidades.size()); // DEBUG
 			}
 		};
 		
@@ -93,19 +90,6 @@ public class Juego {
 		t.start();
 
 	}
-
-	/*
-	public void testEntidades() {
-		Entidad p1 = new PowerUp(new Pocion(player),this,limiteX/2,0,1,2);
-		agregarEntidad(p1);
-		Entidad p2 = new PowerUp(new ArmaTemporal(player),this,limiteX/2 + 90,0,1,2);
-		agregarEntidad(p2);
-		Entidad p3 = new PowerUp(new Cuarentena(player),this,limiteX/2 - 90,-150,1,2);
-		agregarEntidad(p3);
-		Entidad p4 = new PowerUp(new Escudo(player),this,limiteX/2,-70,1,2);
-		agregarEntidad(p4);
-		
-	}*/
 	
 	private void actualizarEntidades() {
 		// Añadido para evitar ConcurrentException al agregar Entidad en actualizar().
@@ -184,6 +168,9 @@ public class Juego {
 					detenerMusica();
 					iniciarMusica(nivelActual.getMusica());
 					
+					// Curar un poco al jugador despues de cada nivel
+					player.setCV(player.getCV() - 100);
+					
 					nivelIndex++;
 					agregarEntidad(new AnimacionTemporal("Cargando",this,300,400,0,0,100));
 				}
@@ -221,11 +208,7 @@ public class Juego {
 	
 	private void crearNiveles() {
 		
-		nivelIndex = 0;
-		
-		// MEJORAR este metodo o externalizarlo a otra clase
-		// MEJORAR limites de spawneo teniendo en cuenta ancho del infectado???
-		
+		nivelIndex = 0;		
 		niveles = new Stack<Nivel>();
 		
 		ImageIcon bg5 = new ImageIcon(getClass().getResource("/img/bg5.png"));
@@ -234,11 +217,11 @@ public class Juego {
 		ImageIcon bg2 = new ImageIcon(getClass().getResource("/img/bg2.png"));
 		ImageIcon bg1 = new ImageIcon(getClass().getResource("/img/bg.png"));
 		
-		String m1 = "/musica/Haunted_Castle_1.wav";
+		String m1 = "/musica/Fighting_in_the_Street.wav";
 		String m2 = "/musica/Haunted_Castle_2.wav";
-		String m3 = "/musica/Fighting_in_the_Street.wav";
-		String m4 = "/musica/Rondo_of_Blood_1.wav";
-		String m5 = "/musica/Mega_Man_9.wav";
+		String m3 = "/musica/Streets_of_Rage_4.wav";
+		String m4 = "/musica/Haunted_Castle_1.wav";
+		String m5 = "/musica/Pacific_War_Again.wav";
 	
 		niveles.push(new Nivel(this,7,7,1.7f,70,525,bg5, m5));
 		niveles.push(new Nivel(this,7,7,1.5f,25,380,bg4, m4));
