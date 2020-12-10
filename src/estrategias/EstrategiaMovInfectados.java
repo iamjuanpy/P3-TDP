@@ -1,13 +1,17 @@
 package estrategias;
 
+import java.util.Random;
+
 import entidades.Entidad;
 import entidades.Humano;
 import entidades.Infectado;
 
 public class EstrategiaMovInfectados extends EstrategiaMovimiento {
+	private Random rng;
 	
 	public EstrategiaMovInfectados(Entidad e) {
 		super(e);
+		rng = new Random();
 	}
 
 	public void mover() {
@@ -21,8 +25,11 @@ public class EstrategiaMovInfectados extends EstrategiaMovimiento {
 		
 		e.getEntidadGrafica().setY(y);
 		
-		// Se puede agregar un delay random para que no sean tan ritmicos los disparos
-		((Humano) e).disparar();
+		// Como esto se ejecuta cada 16 milisegundos, hay que jugar
+		// con el umbral para que no sea injusto/injugable 
+		if (rng.nextFloat() > 0.95f) {
+			((Humano) e).disparar();			
+		}
 	}
 
 }

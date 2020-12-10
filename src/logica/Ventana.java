@@ -1,7 +1,6 @@
 package logica;
 
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 
 public class Ventana extends JFrame {
@@ -44,14 +43,7 @@ public class Ventana extends JFrame {
 		inicializarComponentes();
 	}
 
-	private void inicializarComponentes() {
-		// PASSPORT es solo un placeholder por ahora.
-		// Creo que viene de Windows 95
-		
-		//File midi = new File(getClass().getResource("/midi/PASSPORT.mid"));
-		//Thread t = new Thread(new MusicaRunnable(midi, true));
-		//t.run();
-		
+	private void inicializarComponentes() {		
 		int alturaHUD = 100;
 		int limiteX = getWidth();
 		int limiteY = getHeight() - alturaHUD;				
@@ -65,7 +57,6 @@ public class Ventana extends JFrame {
 		add(menu);
 		add(ayuda);
 		add(display);
-
 	}
 	
 	public HUD getHud() {

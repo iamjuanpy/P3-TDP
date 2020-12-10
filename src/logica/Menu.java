@@ -17,8 +17,9 @@ public class Menu extends JPanel {
 	private JButton btnJugar;
 	private JButton btnSalir;
 	private JButton btnAyuda;
-
 	
+	private Musica musicaTitulo;
+
 	public Menu(int x, int y, int limiteX, int limiteY, Ventana v) {
 		
 		this.v = v;
@@ -26,6 +27,9 @@ public class Menu extends JPanel {
 		setVisible(false);
 		setLayout(null);
 		setBounds(0, 0, limiteX, limiteY);
+		
+		musicaTitulo = new Musica("/musica/title.wav", true);
+		musicaTitulo.run();
 		
 		background = new JLabel();
 		background.setBounds(x, y, limiteX, limiteY);
@@ -58,6 +62,7 @@ public class Menu extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			setVisible(false);
+			musicaTitulo.detenerMusica();
 			btnJugar.setFocusable(false);
 			btnAyuda.setFocusable(false);
 			btnSalir.setFocusable(false);
@@ -77,6 +82,7 @@ public class Menu extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			musicaTitulo.detenerMusica();
 			v.dispose();
 			System.exit(1);
 		}

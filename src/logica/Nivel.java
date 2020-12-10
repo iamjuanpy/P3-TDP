@@ -1,17 +1,14 @@
 package logica;
 
-import java.io.File;
 import java.util.Random;
-
 import javax.swing.ImageIcon;
-
 import entidades.Infectado;
 import entidades.InfectadoAlpha;
 import entidades.InfectadoBeta;
 
 public class Nivel {	
 	protected Juego juego;
-	protected File musica;
+	protected String musica;
 	protected ImageIcon background;
 	
 	// Limite 1 < Limite2
@@ -36,7 +33,7 @@ public class Nivel {
 	
 	private Random rng;
 	
-	public Nivel(Juego j, int cantA, int cantB, float mp, int limite1, int limite2, ImageIcon background) {
+	public Nivel(Juego j, int cantA, int cantB, float mp, int limite1, int limite2, ImageIcon background, String musica) {
 		juego = j;
 		cantidadAlfa = cantA;
 		cantidadBeta = cantB;
@@ -50,6 +47,7 @@ public class Nivel {
 		infectadosASpawnear = cAlfaTanda + cBetaTanda;
 		
 		this.background = background;
+		this.musica = musica;
 		multiplier = mp;
 		rng = new Random();
 		
@@ -108,7 +106,7 @@ public class Nivel {
 		return background;
 	}
 	
-	public File getMusica() {
+	public String getMusica() {
 		return musica;
 	}
 	

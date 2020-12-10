@@ -16,9 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-// import premios.*; // import para testEntidades()
-
 public class Juego {
+	
+	private Musica musica;
 	
 	private List<Entidad> entidades;
 	private List<Entidad> entidadesAñadir;
@@ -96,15 +96,6 @@ public class Juego {
 
 	/*
 	public void testEntidades() {
-		
-		Entidad ia = new InfectadoAlpha(this,limiteX/2 + 70, 0 + 175,0,2, .2f);
-		Entidad ib = new InfectadoBeta(this,limiteX/2 - 70, 0 + 75,0,2, .2f);
-		spawneoInfectado();
-		spawneoInfectado();
-		
-		agregarEntidad(ia);
-		agregarEntidad(ib);
-		
 		Entidad p1 = new PowerUp(new Pocion(player),this,limiteX/2,0,1,2);
 		agregarEntidad(p1);
 		Entidad p2 = new PowerUp(new ArmaTemporal(player),this,limiteX/2 + 90,0,1,2);
@@ -150,10 +141,24 @@ public class Juego {
 		
 		// Si está eliminado, pierde
 		if (player.estaEliminado()) {
+			detenerMusica();
 			v.perder();
 			t.stop();
 		}
 		
+	}
+	
+	private void iniciarMusica(String path) {
+		if (musica == null) {
+			musica = new Musica(path, true);
+			musica.run();
+		} else {
+			musica.cambiarMusica(path);
+		}
+	}
+	
+	private void detenerMusica() {
+		musica.detenerMusica();
 	}
 	
 	private void manejarNiveles() {
@@ -163,33 +168,44 @@ public class Juego {
 			nivelActual = niveles.pop();
 			nivelIndex++;
 			mapa.setBackground(nivelActual.getBackground());
+			iniciarMusica(nivelActual.getMusica());
 		}
 		
 		if (!hayInfectadosVivos()) {
 			
-			player.deleteEfectoTemporal(new Cuarentena(player)); // Modo de arreglar el hud, para que no marque que hay cuarentena de una oleada pasada
+			// Modo de arreglar el hud, para que no marque que hay cuarentena de una oleada pasada
+			player.deleteEfectoTemporal(new Cuarentena(player));
 			
 			if (nivelActual.finNivel()) { 
 				
-				if (!niveles.isEmpty()) { // Si quedan niveles, aparece la animacion de cargando y pasa al siguiente nivel
+				// Si quedan niveles, aparece la animacion de cargando y pasa al siguiente nivel
+				if (!niveles.isEmpty()) {
 					nivelActual = niveles.pop();
+					detenerMusica();
+					iniciarMusica(nivelActual.getMusica());
+					
 					nivelIndex++;
 					agregarEntidad(new AnimacionTemporal("Cargando",this,300,400,0,0,100));
 				}
 				else { // Si no, ya ganó
+					detenerMusica();
 					v.ganar();
 					t.stop();
 				}
 				
-			} else nivelActual.siguienteTanda();
+			} else {
+				nivelActual.siguienteTanda();
+			}
 
 			if (nivelActual.hayInfectadosParaSpawnear()) {
 				if (nivelCD == 0) { // Cuando termina el cooldown
 					nivelActual.spawnEnemigos();					// Spawnea enemigos 
 					mapa.setBackground(nivelActual.getBackground());// Si pasó de nivel, cambia la imagen
+					
 					nivelCD = 100;
+				} else {
+					nivelCD--;
 				}
-				else nivelCD--;
 			}
 			
 		}  
@@ -211,12 +227,24 @@ public class Juego {
 		// MEJORAR limites de spawneo teniendo en cuenta ancho del infectado???
 		
 		niveles = new Stack<Nivel>();
-		niveles.push(new Nivel(this,7,7,1.7f,70,525,new ImageIcon(getClass().getResource("/img/bg5.png"))));
-		niveles.push(new Nivel(this,7,7,1.5f,25,380,new ImageIcon(getClass().getResource("/img/bg4.png"))));
-		niveles.push(new Nivel(this,6,6,1.2f,130,450,new ImageIcon(getClass().getResource("/img/bg3.png"))));
-		niveles.push(new Nivel(this,5,5,1f,65,380, new ImageIcon(getClass().getResource("/img/bg2.png"))));
-		niveles.push(new Nivel(this,5,5,0.8f,65,500,new ImageIcon(getClass().getResource("/img/bg.png"))));
 		
+		ImageIcon bg5 = new ImageIcon(getClass().getResource("/img/bg5.png"));
+		ImageIcon bg4 = new ImageIcon(getClass().getResource("/img/bg4.png"));
+		ImageIcon bg3 = new ImageIcon(getClass().getResource("/img/bg3.png"));
+		ImageIcon bg2 = new ImageIcon(getClass().getResource("/img/bg2.png"));
+		ImageIcon bg1 = new ImageIcon(getClass().getResource("/img/bg.png"));
+		
+		String m1 = "/musica/Haunted_Castle_1.wav";
+		String m2 = "/musica/Haunted_Castle_2.wav";
+		String m3 = "/musica/Fighting_in_the_Street.wav";
+		String m4 = "/musica/Rondo_of_Blood_1.wav";
+		String m5 = "/musica/Mega_Man_9.wav";
+	
+		niveles.push(new Nivel(this,7,7,1.7f,70,525,bg5, m5));
+		niveles.push(new Nivel(this,7,7,1.5f,25,380,bg4, m4));
+		niveles.push(new Nivel(this,6,6,1.2f,130,450,bg3, m3));
+		niveles.push(new Nivel(this,5,5,1f,65,380,bg2, m2));
+		niveles.push(new Nivel(this,5,5,0.8f,65,500,bg1, m1));		
 	}
 	
 	public PowerUpFactory getPowerUpFactory() {
